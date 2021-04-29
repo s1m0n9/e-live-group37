@@ -1,0 +1,35 @@
+<view class= "chatroom" >
+	<scroll-view scroll-y class="body">
+    <view wx:for ="{{chats}}" wx:key="{{item._id}}" class="message {{openId == item._openid ? 'message__sendright':'false'}}">
+			
+      <image class="avatar" style='width: 10vw; display: flex;'src="{{item.avatar}}" mode="widthFix"></image>
+    <view class="main" >
+    
+      <view class="text-wrapper">
+        <view class="text-content" >{{item.textContent}}</view>
+      </view>
+    </view>
+    
+    </view>
+  </scroll-view>
+	
+
+
+			
+
+	
+
+
+
+	<view class="input_box" wx:if="{{userInfo}}">
+		<view class="input_box1">
+			
+			<input class="ipt" placeholder="请输入" bindinput="onTextInput"  adjust-position="false" cursor-spacing="10rpx"></input>
+			<button class="send-btn" bindtap="onSend">发送</button>
+		</view>
+	</view>
+
+	
+
+
+	</view>

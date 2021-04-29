@@ -1,0 +1,90 @@
+/* pages/detail/detail.wxss */
+page{
+  background-color: rgb(248, 246, 246);
+}
+.head {
+  border-top-right-radius: 28rpx;
+  border-top-left-radius: 28rpx;
+  width: 90%;
+  height: 200rpx;
+  margin-top: 30rpx;
+  margin-left: 35rpx;
+  background-color: white;
+  display: flex;
+}
+.head image{
+  border-radius: 50rpx;
+  border-block-color: teal;
+  margin-top: 25rpx;
+  margin-left: 30rpx;
+  width: 100rpx;
+  height: 100rpx;
+}
+.head #name{
+  left: 180rpx;
+  margin-top: 20rpx;
+  font-size: 35rpx;
+  position: absolute;
+}
+.head #time{
+  left: 180rpx;
+  margin-top: 80rpx;
+  font-size: 25rpx;
+  color: rgb(201, 201, 201);
+  position: absolute;
+}
+.head #price1{
+  left: 480rpx;
+  margin-top: 60rpx;
+  font-size: 30rpx;
+  color: rgb(201, 201, 201);
+  position: absolute;
+}
+.head #price2{
+  left: 570rpx;
+  margin-top: 60rpx;
+  font-size: 30rpx;
+  color: rgb(8, 212, 19);
+  position: absolute;
+}
+.detail_frame {
+  border-bottom-right-radius: 28rpx;
+  border-bottom-left-radius: 28rpx;
+  width: 90%;
+  height: 1000rpx;
+  margin-top: 30rpx;
+  margin-left: 35rpx;
+  background-color: white;
+} 
+.detail_frame #from, #to{
+  font-size: 35rpx;
+  margin-left: 20rpx;
+  padding: 10rpx;
+}
+
+.detail_frame #description{
+  margin-left: 30rpx;
+  font-size: 35rpx;
+  word-break: break-all;
+}
+.b1{
+  background:#82ccd6ee;
+  font-size: 35rpx;
+  color: white;
+  position: absolute;
+  margin-top: 700rpx;
+  left: 48rpx;
+  width: 300rpx;
+  margin-bottom: 15rpx;
+}
+
+.b2{
+  background:#82ccd6ee;
+  font-size: 35rpx;
+  position: absolute;
+  color: white;
+  margin-top: 700rpx;
+  left: 390rpx;
+  width: 300rpx;
+  margin-bottom: 15rpx;
+}

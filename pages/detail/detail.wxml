@@ -1,0 +1,20 @@
+<!--pages/detail/detail.wxml-->
+<view class="head">
+    <image src="{{head_image}}"></image>
+    <view id="name">{{name}}</view>
+    <view id="time">{{time}}</view>
+    <view id="price1">price:</view>
+    <view id="price2">￥{{price}}</view>
+  </view>
+<view class="detail_frame">
+  <view id="from">From: {{from}}</view>
+  <view id="to">To: {{to}}</view>
+  <view id="description">{{description}}</view>
+  <view id="type">{{type}}</view>
+<view class="image" wx:for="{{image}}">
+    <image src="{{item}}"></image>
+</view>
+  
+  <button class="b1" bindtap="take">Take the order</button>
+  <button class="b2" bindtap="chat">Chat</button>
+</view>

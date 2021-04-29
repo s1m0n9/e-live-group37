@@ -1,0 +1,106 @@
+<!--pages/demo2/demo2.wxml<view>
+<text>pages/demo2/demo2.wxml</text>
+<tabbar tabbar="{{tabbar}}"></tabbar>
+</view>-->
+
+<!--pages/post/post-detail/post-detail.wxml-->
+<!--先静后动，先样式再数据-->
+<view class="checktabs">
+<view class="detail-container">
+  <view class="deal-header">
+		<view class="deal-header-tit">
+			<view class="deal-header-tit-list dea-headerl-tit-left">待付款</view>
+			
+    </view>
+    <view class="deal-header-msg">
+			<text class="deal-header-msg-list deal-header-msg-one">等待买家付款</text>
+			<text class="deal-header-msg-list deal-header-msg-two">29分59秒后，如果买家未付款，订单自动取消。</text>
+		</view>
+  </view>
+
+	<view class="deal-message">
+		<view class="box">
+			<view class="box-main">
+				<view class="box-main-left">
+					<image mode="widthFix" class="box-main-left-img" src="{{pic}}"></image>
+				</view>
+				<view class="box-main-right">
+					<view class="box-main-right-tit">{{name}}</view>
+					<view class="box-main-right-text-left">￥{{money}}</view>
+          <view class="box-main-right-text-right">
+            <view class="distance">
+<text class="const-text">publisher:</text><text class="const-text">xxx</text>
+            </view></view>
+				</view>
+      </view>
+      
+			<view class="distance">
+<text class="const-text"><text class="detail_sp">Note:.......{{sp}}</text></text>        	
+    
+			</view>
+    </view>
+  </view>
+ 
+
+</view>
+<view class="horizon"></view>
+<view class="connectuser">
+			<view class="connectuser-list connectuser-left">
+			<text class="connectuser-list-mini connectuser-left-one">Detail:</text>
+      <text class="connectuser-list-mini connectuser-left-two">DDL:</text>
+      <text class="connectuser-list-mini connectuser-left-three">FROM:</text>
+      <text class="connectuser-list-mini connectuser-left-four">TO:</text>
+			</view>
+			<view class="connectuser-list connectuser-center">
+				<text class="connectuser-list-mini connectuser-left-one"><text class="detail">{{detail}}</text></text>
+        <text class="connectuser-list-mini connectuser-left-two"><text class="detail_time">{{time}}</text></text>
+       
+        <view class="distance">
+	 			<image class="icon" src="../../tabbarComponent/icon/dt.png"></image>
+            	<text class="address">文星广场菜鸟驿站</text>
+      </view>    
+        <view class="distance">
+	 			<image class="icon" src="../../tabbarComponent/icon/dt.png"></image>
+            	<text class="address">文星A05</text>
+			</view>
+			</view>
+			<view class="connectuser-list connectuser-right">
+			<button class="connectuser-right-btn" type="default" size="{{defaultSize}}" loading="{{loading}}" plain="{{plain}}"
+        disabled="{{disabled}}" bindtap="default" hover-class="other-button-hover"> 订单信息 </button>
+			</view>
+		</view>
+<view class="horizon"></view>
+<view class="connectuser">
+			<view class="connectuser-list connectuser-left">
+			<text class="connectuser-list-mini connectuser-left-one">publish time:</text>
+      <text class="connectuser-list-mini connectuser-left-two">receive time:</text>
+      <text class="connectuser-list-mini connectuser-left-two">receiver:</text>
+      <text class="connectuser-list-mini connectuser-left-two">phone:</text>
+			</view>
+			<view class="connectuser-list connectuser-center">
+				<text class="connectuser-list-mini connectuser-left-one"><text class="detail_time">{{time}}</text></text>
+        <text class="connectuser-list-mini connectuser-left-two"><text class="detail_time">{{time}}</text></text>
+        <text class="connectuser-list-mini connectuser-left-one"> <text class="detail">xxx</text></text>
+        <text class="connectuser-list-mini connectuser-left-one"><text class="detail">111111111111</text></text>
+			</view>
+			<view class="connectuser-list connectuser-right">
+			<button class="connectuser-right-btn" type="default" size="{{defaultSize}}" loading="{{loading}}" plain="{{plain}}"
+        disabled="{{disabled}}" bindtap="default" hover-class="other-button-hover"> 接单人信息 </button>
+			</view>
+		</view>
+<view class="horizon"></view>
+
+<button class="b1" >Take the order</button>
+  <button class="b2" >Chat</button>
+  <button class="b3" >Cancel the order</button>
+</view>
+
+
+
+ 
+
+
+
+
+
+

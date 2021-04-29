@@ -1,0 +1,31 @@
+<!--pages/restMoney/restMoney.wxml-->
+<view class='main'>
+  <view class='restMoney'>
+    <view class='yue'>
+      <view class='describe'>balance(¥)</view>
+      <view class='num'>100.00</view>
+    </view>
+    <view class='transferin' bindtap='chongzhi'>transfer in</view>
+  </view>
+  <!-- <view class='qiehuan' style="width:100%;height:{{height}};background:red"> -->
+    <!-- 充值和消费记录 -->
+    <view class="swiper-tab">  
+        <view class="tab-item {{currentIndex1?'active':''}} "  bindtap="currentIndex1">transactions</view>
+    </view>
+    <!-- 充值记录 -->  
+    <view class='tab-items'>
+      <view class='{{currentIndex1?"show":"hidden"}}'>   
+        <view class='recharge' wx:for="{{recharge}}" wx:key="id" wx:for-item="item">
+          <view class='record'>
+            <view class='list'>
+            
+              <view class='time'>{{item.time}}</view>
+            </view>
+            <view class='money'>+ ¥ {{item.money}}</view>
+          </view>
+        </view>
+      </view>
+    </view>
+   
+  <!-- </view> -->
+</view>

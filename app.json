@@ -1,0 +1,62 @@
+{
+  "pages":[
+ 
+    "pages/post/post",
+    "pages/login/login" ,
+    "pages/homepage/homepage",
+    "pages/index/index",
+    "pages/ogin/register",
+    "pages/login/resetPasswd2",
+    "pages/login/resetPasswd1",
+    "pages/login/findback",
+    "pages/chat/chat" ,
+    "pages/msg/msg",
+   
+    "pages/order/order",
+    "pages/userpage/userpage",
+    
+    "pages/detail/detail"
+  ],
+  "window":{
+    "backgroundTextStyle":"dark",
+    "navigationBarBackgroundColor": "#ADEAEA",
+    "navigationBarTitleText": "Bounty Hunter",
+    "navigationBarTextStyle":"black"
+  },
+  "tabBar": {
+    
+    "list": [{
+      "pagePath": "pages/homepage/homepage",
+      "text": "home",
+      "iconPath": "icon/icon_home.png",
+      "selectedIconPath": "icon/icon_home_HL.png"
+    },
+    {
+      "pagePath": "pages/msg/msg",
+      "text": "message",
+      "iconPath": "icon/sx.png",
+      "selectedIconPath": "icon/sx_HL2.png"  
+    },
+    {
+      "pagePath": "pages/post/post",
+      "text": "post",
+      "iconPath": "icon/icon_release.png",
+      "isSpecial": true,
+      "selectedIconPath": "icon/icon_release.png"
+    },
+    {
+      "pagePath": "pages/order/order",
+      "text": "order",
+      "iconPath": "icon/icon_SJ.png",
+      "selectedIconPath": "icon/icon_SJ_HL.png" 
+    },
+    {
+      "pagePath": "pages/userpage/userpage",
+      "text": "mine",
+      "iconPath": "icon/icon_mine.png",
+      "selectedIconPath": "icon/icon_mine_HL.png"
+    }]
+  },
+ 
+  "sitemapLocation": "sitemap.json"
+}

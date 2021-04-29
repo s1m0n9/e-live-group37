@@ -1,0 +1,74 @@
+<!--pages/homepage/homepage.wxml-->
+<view class="marquee_container" style="--marqueeWidth:-80em; overflow:hidden">
+    <view class="marquee_text">{{announcementText}}</view>
+</view>
+  <swiper class="image-group" autoplay interval="2000" circular indicator-dots indicator-color="#FFFAFA" indicator-active-color="#EEDD82">
+    <swiper-item><image src="https://www.xjtlu.edu.cn/zh/assets/image-cache/images/campus/South%20Campus/south-campus021.80bf710a.jpg"/></swiper-item>
+    <swiper-item><image src="http://5b0988e595225.cdn.sohucs.com/images/20190610/e92bb3e60701458ab5cc5b5c00c01b12.jpeg"/></swiper-item>
+    <swiper-item><image src="https://pic1.zhimg.com/v2-624e9e4fadc7be5f270c3ce1f78f55b1_b.jpg"/></swiper-item>
+  </swiper> 
+  <view class="substitute"></view>
+  <view class="{{scrollTop>230 ? 'boxFixed' : ''}}">
+    <picker class="{{scrollTop>230 ? 'filterFixed' : 'filterAbsolute'}}" mode="selector" bindchange="bindRegionChange" range="{{types}}">
+      <image src="../../icon/filter.png"></image>
+    </picker>
+  </view>
+  <scroll-view class="{{scrollTop>230 ? 'buttonsFixed' : 'buttonsAbsolute'}}" scroll-x>
+      <view class="{{isTabs == 1 ? 'active' : ''}}" data-flag="1" bindtap="checkTap" style="width:130rpx;">
+        <view>Total </view>
+      </view>
+      <view class="{{isTabs == 2 ? 'active' : ''}}" data-flag="2" bindtap="checkTap" style="width:210rpx;">
+        <view>Expressage</view>
+      </view>
+      <view class="{{isTabs == 3 ? 'active' : ''}}" data-flag="3" bindtap="checkTap" style="width:305rpx;"> 
+        <view >Purchasing agent </view>
+      </view>
+      <view class="{{isTabs == 4 ? 'active' : ''}}" data-flag="4" bindtap="checkTap" style="width:185rpx;"> 
+        <view> Take-out </view>
+      </view>
+  </scroll-view>
+
+<view hidden="{{!(isTabs == 1)}}">
+  <view class="info" bindtap="go_to_chat" wx:for="{{total_list}}" wx:for-item="de_info" data-from="{{de_info.from}}" data-to="{{de_info.to}}" data-ddl="{{de_info.ddl}}" data-money="{{de_info.money}}" data-content="{{de_info.content}}" data-time="{{de_info.time}}" data-image="{{de_info.image}}" data-photo="{{de_info.photo}}" data-name="{{de_info.name}}" data-type="{{de_info.type}}">
+    <view id="pos1" scroll-x>From: {{de_info.from}}</view>
+    <view id="pos2" scroll-x>To: {{de_info.to}}</view>
+    <view id="post3">DDL: {{de_info.dates}}{{de_info.times}}</view>
+    <view id="post4">Gender: {{de_info.gender}}</view>
+    <view id="post5">￥{{de_info.money}}</view>
+    <view id="post6">{{de_info.content}}</view>
+    <view id="post7">{{de_info.time}}</view>
+  </view>
+</view>
+
+<view hidden="{{!(isTabs == 2)}}">
+  <view class="info" bindtap="go_to_chat" wx:for="{{expressage_list}}" wx:for-item="de_info">
+    <view id="pos1">From: {{de_info.from}}</view>
+    <view id="pos2">To: {{de_info.to}}</view>
+    <view id="post3">DDL: {{de_info.ddl}}</view>
+    <view id="post4">Gender: {{de_info.gender}}</view>
+    <view id="post5">￥{{de_info.price}}.00</view>
+    <view id="post6">{{de_info.description}}</view>
+  </view>
+</view>
+
+<view hidden="{{!(isTabs == 3)}}">
+  <view class="info" bindtap="go_to_chat" wx:for="{{night_list}}" wx:for-item="de_info">
+    <view id="pos1" scroll-x>From: {{de_info.from}}</view>
+    <view id="pos2" scroll-x>To: {{de_info.to}}</view>
+    <view id="post3">DDL: {{de_info.ddl}}</view>
+    <view id="post4">Gender: {{de_info.gender}}</view>
+    <view id="post5">￥{{de_info.money}}.00</view>
+    <view id="post6">{{de_info.content}}</view>
+  </view>
+</view>
+
+<view hidden="{{!(isTabs == 4)}}">
+  <view class="info" bindtap="go_to_chat" wx:for="{{takeout_list}}" wx:for-item="de_info">
+    <view id="pos1" scroll-x>From: {{de_info.locate}}</view>
+    <view id="pos2" scroll-x>To: {{de_info.to}}</view>
+    <view id="post3">DDL: {{de_info.ddl}}</view>
+    <view id="post4">Gender: {{de_info.gender}}</view>
+    <view id="post5">￥{{de_info.price}}.00</view>
+    <view id="post6">{{de_info.description}}</view>
+  </view>
+</view>

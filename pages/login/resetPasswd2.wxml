@@ -1,0 +1,11 @@
+<view class="check">
+  <!-- 输入核验码 -->
+  <view class="query">
+    <view class="query_item_name">请输入核验码</view>
+    <view class="query_num_block">
+        <input type='number' class="num_item_block" wx:for="{{inputLen}}" wx:key="{{index}}" disabled bindtap='onFocus' value="{{iptValue.length>=index+1?iptValue[index]:''}}" />
+    </view>
+    <input type="number" name="password" password="{{true}}" class='hidden_ipt' maxlength="{{inputLen}}" focus="{{isFocus}}" bindinput="setValue"></input>
+        <view class="confirm" bindtap='examine' bindtap="next">确认</view>
+  </view>
+</view>

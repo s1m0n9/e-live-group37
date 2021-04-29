@@ -1,0 +1,12 @@
+<!--pages/addAddr/addAddr.wxml-->
+<view class='main'>
+  <form>
+    <view class='addr'>
+      <input id='name' placeholder='name' placeholder-class='name'></input>
+      <input id='tel' placeholder='tel' placeholder-class='tel'></input>
+      
+      <textarea placeholder='detailed address' placeholder-class='dizhi'></textarea>
+    </view>
+    <button class='confirm' form-type='submit'>submit</button>
+  </form>
+</view>

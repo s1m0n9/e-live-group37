@@ -1,0 +1,72 @@
+
+  <view class="item">
+    <view class="{{isTabs == 1 ? 'active' : ''}}" data-flag="1" bindtap="checkTap">
+      <image src="{{isTabs ==1 ? './2.jpg' : './1.jpg'}}" class="czr"></image>
+      <text class="{{isTabs == 1 ? 'activeCol' : ''}}">我的发布</text>
+    </view>
+    <view class="{{isTabs == 2 ? 'active' : ''}}" data-flag="2" bindtap="checkTap">
+      <image src="{{isTabs ==2 ? './2.jpg' : './1.jpg'}}" class="fkr"></image>
+      <text class="{{isTabs == 2 ? 'activeCol' : ''}}">我的接单</text>
+    </view>
+  </view>
+  
+  
+
+    <!--发布 -->
+  <view hidden="{{!(isTabs == 1)}}">
+    <scroll-view class="hot-box" scroll-y="true">
+
+      <view  class="orderDetails" wx:for="{{queryResult}}" wx:key="index" >  <!--openid-->
+       <view  data-name="{{item.name}}" data-state="{{item.state}}" data-time="{{item.time}}" data-sp="{{item.sp}}" data-detail="{{item.detail}}" data-money="{{item.money}}" data-pic="{{item.url}}"> 
+        <view class="orderListTitle">
+           <text class="userName">{{item.dates +" "+ item.times}}</text>   <!--PostInfo.ddl-->
+          <text class="orderStates">{{item.state}}</text> <!--订单状态-->
+        </view>
+        <view bindtap="go_to_demo" class="orderListDetails">
+          <view bindtap="onPostTap" class="productInfo" >
+            <view class="productType">Item Type: {{item.type}}</view>  <!--PostInfo.type订单类型-->
+            <view class="productLimit">Gender restrictions：{{item.gender}}</view> <!--PostInfo.gender-->
+            <view class="productPrice">￥{{item.money}}</view> <!--PostInfo.money-->
+          </view>
+        </view>
+        <view class="productInfo">
+          <view>
+             <button wx:if="{{item.state=='Free'}}"   type="warn" bindtap="cancel">Cancel</button>   <!--当该订单未被他人接单可以取消-->
+             <button class="confirmbtn" wx:if="{{orderstate=='进行中'}}"   type="default" bindtap="confirm">确认收货</button>   <!--当订单被他人接单不可以取消 可以更改状态-->
+             <button wx:if="{{orderstate=='已完成'}}"  disabled="true" >订单已完成</button>   <!--当订单已完成不可以取消-->
+          </view>
+        </view>
+       </view>  
+      </view>
+      </scroll-view>
+    </view>
+    <view>
+</view>
+ 
+  <!-- 接单 -->
+    <view hidden="{{!(isTabs == 2)}}">
+      <scroll-view class="hot-box" scroll-y="true">
+      <view  class="orderDetails" wx:for="{{waitPayOrder}}" wx:key="index">
+        <view bindtap="go_to_demo" data-name="{{item.name}}" data-state="{{item.state}}" data-time="{{item.time}}" data-sp="{{item.sp}}" data-detail="{{item.detail}}" data-money="{{item.money}}" data-pic="{{item.url}}"> 
+        <view class="orderListTitle">
+           <text class="userName">Time Left：<text style='color:red'>{{timeLeft}}</text></text>
+          <text class="orderStatus">{{item.state}}</text>
+        </view>
+        <view bindtap="onPostTap" class="orderListDetails">
+          <view class="productInfo" >
+            <view class="productTitle">Item Type: {{item.type}}</view> <!--PostInfo.type订单类型-->
+            <view class="productLoca">From: {{item.from}}</view> <!--PostInfo.from-->
+            <view class="productLoca">To: {{item.to}}</view>  <!--PostInfo.to-->
+           
+          </view>
+        </view>
+        <view class="productCount">
+          <view class="productPrice">￥{{item.money}}</view> <!--PostInfo.money-->
+        </view>
+      </view>
+      </view>   
+      </scroll-view>
+  </view>
+    <tabbar tabbar="{{tabbar}}"></tabbar>
+
+

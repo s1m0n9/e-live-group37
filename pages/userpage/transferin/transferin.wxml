@@ -1,0 +1,16 @@
+<!--pages/chongzhi/chongzhi.wxml-->
+<view class='main'>
+  <form>
+    <view class='panel'>
+      <view class='recharge'>transfer amount</view>
+      <view class='rechargeInput'>
+        <label for="sum">¥</label>
+        <input id='sum'></input>
+      </view>
+    </view>
+    <button class='submit' form-type='submit'>transfer</button>
+  </form>
+</view>
+
+
+

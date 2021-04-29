@@ -1,0 +1,13 @@
+<!--pages/login/resetPasswd1.wxml-->
+<view class="a">
+  <form bindsubmit="onSubmit">
+    <input class="ipt" placeholder="输入绑定的邮箱"placeholder-sclass="iptinfo" 
+   cursor-spacing="100px"> </input>
+  </form>
+  <form bindsubmit="onSubmit">
+    <input class="ipt" type="number" placeholder="输入绑定电话号码"placeholder-sclass="iptinfo" 
+   cursor-spacing="100px"> </input>
+  </form>
+  <button bindtap="next" class="q" type="primary">
+    下一步</button>
+ </view>

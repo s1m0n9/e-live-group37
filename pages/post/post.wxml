@@ -1,0 +1,69 @@
+<!--pages/post/post.wxml-->
+    <form class="sendForm" bindsubmit="formSubmit">
+        <view>
+            <view class="form-lable">Type：</view> <!--from-->
+            <picker bindchange="bindPickerChange2" value="{{choseQuestionBank2}}" range="{{array1}}"> 
+            <view  class='form-value form-title' >{{choseQuestionBank2}} </view>
+            </picker>
+           <view class="form-lable">From：</view> <!--from-->
+            <view class="form-value form-title">
+                <input name="title" bindinput= "FromInput" placeholder="Where to get things"/>
+           </view>
+            <view class="form-lable">To：</view> <!--to-->
+            <view class="form-value form-title">
+                <input name="title" bindinput= "ToInput" placeholder="Where to deliver things"/>
+            </view> 
+            <view class="form-lable">DDL：</view> <!--DDL-->
+            <view class="form-value form-title">
+              <picker mode="date" value="{{date}}" start="1978-01-01" end="2050-12-31" bindchange="bindDateChange">  
+               <view class="picker"> 
+                Delivery Date: {{dates}}  
+                 </view>            
+               </picker> 
+              </view>  
+              <view class="form-value form-title">
+              <picker mode="time" value="{{time}}" start="00:00" end="23:59" bindchange="bindTimeChange">  
+                <view class="picker">  
+                    Delivery Time : {{times}}
+              </view>    
+            </picker>  
+            </view> 
+            <view class="form-lable">Money：</view> <!--Money-->
+            <view class="form-value form-title">
+                <input name="title" type="digit" bindinput= "MoneyInput" placeholder="How much will you pay"/>
+            </view> 
+            <view class="form-lable">Gender restrictions:</view>
+            <picker bindchange="bindPickerChange1" value="{{choseQuestionBank1}}" range="{{array}}"> 
+            <view  class='form-value form-title' >{{choseQuestionBank1}} </view>
+            </picker>
+         
+
+        </view>
+        <view>
+            <view class="form-lable">Content：</view>
+            <view class="form-value form-content">
+                <input name="content" bindinput='ContentInput' placeholder="Please enter details..."/>
+            </view>          
+        </view>
+
+        <view class='pages'>
+  <view class='top'><text class='top_name'>Add Photo：</text></view>
+  <!-- 图片 -->
+  <view class="images_box">
+    <block wx:key="imgbox" wx:for="{{imgbox}}">
+      <view class='img-box'>
+        <image class='img' src='{{item}}'></image>
+        <view class='img-delect' data-deindex='{{index}}' bindtap='imgDelete1'>
+          <image class='img' src='../../images/delete.jpg'></image>   
+        </view>
+      </view>
+    </block>
+    <view class='img-box' bindtap='addPic1' wx:if="{{imgbox.length<9}}">
+      <image class='img' src='../../images/add.jpg'></image>   
+    </view>
+  </view> 
+  <view class="form-submit">
+            <button type="primary" form-type="submit" bindtap="to_submit">发帖</button>
+        </view>
+</view> 
+ </form>

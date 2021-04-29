@@ -1,0 +1,29 @@
+
+<!--pages/login/login.wxml-->
+
+<view class="bd" style="flex:2;">
+  <view class="background"></view>
+  <form class="login-form">
+    <view class="input-group {{userid_focus ? 'active' : ''}}">
+      <text class="input-label">ID</text>
+      <input bindinput="useridInput" class="ipt"  cursor-spacing="30" id="name" maxlength="20" placeholder="Please enter your ID"  bindfocus="inputFocus" bindblur="inputBlur" />
+    </view>
+    <view class="input-group {{passwd_focus ? 'active' : ''}}">
+      <text class="input-label">Password</text>
+      <input bindinput="passwdInput" class="ipt" password="true" cursor-spacing="30" id="password" placeholder="Please enter your password" bindfocus="inputFocus" bindblur="inputBlur" />
+    </view>
+  </form>
+  <button class="confirm-btn" style="opacity :{{opacity}};  background: rgb(0, 204, 255); color: #fff;"   disabled="{{disable}}" bindtap="login" >Login
+  </button>
+  <button class="confirm-btn" bindtap="register" >
+    Register</button>
+    <button class="confirm-btn1" bindtap="forget" >
+   Forgot password</button>
+</view>
+
+
+
+ 
+
+
+

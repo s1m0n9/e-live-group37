@@ -1,0 +1,28 @@
+.ipt{
+  border: 5rpx solid black;
+  border-radius: 28rpx; 
+  width: 90%;
+  height: 70rpx; 
+  margin-left: 40rpx;
+  margin-block-end: 40px;
+  margin-block-start: 40px;
+}
+.iptinfo{
+  color:#aaa; 
+  font-size: 22rpx;
+   padding: 5 5 10px;
+  }
+.a{
+  height: 50rpx;
+}
+.but{
+  color:black; 
+  margin-left: 200rpx;
+  margin-right: 200rpx;
+  background:#82ccd6ee;
+}
+page{  
+  display: block;  
+  min-height: 100%;  
+  background-color:azure
+}

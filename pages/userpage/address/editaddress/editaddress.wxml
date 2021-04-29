@@ -1,0 +1,13 @@
+<!--pages/editAddr/editAddr.wxml-->
+<view class='main'>
+  <form>
+    <view class='addr'>
+      <input id='name' placeholder='name' placeholder-class='name' value='abc'></input>
+      <input id='tel' placeholder='tel' placeholder-class='tel'  value='1363636363'></input>
+      
+      <textarea placeholder='detailed address' placeholder-class='dizhi' value='文星广场A05 1212'></textarea>
+    </view>
+    <button class='confirm' form-type='submit'>submit</button>
+  </form>
+</view>
+

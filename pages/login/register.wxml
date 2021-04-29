@@ -1,0 +1,25 @@
+<view class="a">
+
+<input bindinput='inputName' class="ipt" placeholder="username"placeholder-sclass="iptinfo" 
+cursor-spacing="100px"> </input>
+
+<input bindinput='inputStudentID' class="ipt" placeholder="student ID"placeholder-sclass="iptinfo" 
+cursor-spacing="100px"> </input>
+
+<input bindinput='inputPassword' class="ipt" password='true' placeholder="input your password"placeholder-sclass="iptinfo" 
+cursor-spacing="100px"> </input>
+
+<input bindinput='confirmPassword' class="ipt" password='true' placeholder="password confirm"placeholder-sclass="iptinfo" 
+cursor-spacing="100px"> </input>
+
+<input bindinput='inputPhoneNum' class="ipt" placeholder="phone number"placeholder-sclass="iptinfo" 
+cursor-spacing="100px"> </input>
+
+<input bindinput='inputEmail' class="ipt" placeholder="e-mail"placeholder-sclass="iptinfo" 
+cursor-spacing="100px"> </input>
+
+<button bindtap='register' class ="but" type="success">submit</button>
+
+</view>
+
+

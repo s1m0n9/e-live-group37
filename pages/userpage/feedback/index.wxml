@@ -1,0 +1,27 @@
+<!--pages/view/view.wxml-->
+<view class='main'>
+  <form>
+    <view class='view'>
+      <view class='inputList'>
+        <label for='name'>name</label>
+        <input id='name' placeholder='please input your name here(optional)' placeholder-class='name'></input>
+      </view>
+      <view class='inputList'>
+        <label for='tel'>tel</label>
+        <input id='tel' placeholder='please leave your contact information.' placeholder-class='tel'></input>
+      </view>
+      <view class='textList'>
+        <label for="views">advice</label>
+        <textarea id="views"  class="textview" placeholder='please write down your advice here'></textarea>
+      </view>
+      <view class='upload'>
+        <image class='upload_pic' src='../image/pic.png'></image>
+        <view class='describe'>add pictures</view>
+      </view>
+      <button class='submit' form-type='submit'>submit</button>
+    </view>
+   
+  </form>
+</view>
+
+

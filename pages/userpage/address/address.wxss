@@ -1,0 +1,112 @@
+/* pages/myAddr/myAddr.wxss */
+page{
+  background: #ededed;
+}
+.list{
+  width: 94%;
+  height: 220rpx;
+  margin: 16rpx auto 0;
+  background: #ffffff;
+  border-radius: 28rpx;
+  overflow: hidden;
+}
+.nameAndTel{
+  width: 92%;
+  margin: 32rpx auto 0;
+  height: 28rpx;
+  display: flex;
+  font-size: 28rpx;
+  line-height: 28rpx;
+  font-weight: bold;
+  color:#333333;
+}
+.tel{
+  margin-left: 60rpx;
+}
+.addr{
+  width: 92%;
+  height: 24rpx;
+  color: #999999;
+  font-size: 24rpx;
+  line-height: 24rpx;
+  margin: 20rpx auto 0;
+  padding-bottom: 32rpx;
+  border-bottom: 2rpx solid #e6e6e6;
+}
+.list_bottom{
+  width: 94%;
+  height: 84rpx;
+  margin: auto;
+  overflow: hidden;
+  display: flex;
+  justify-content: space-between
+}
+.radio{
+  width: 50%;
+  height: 28rpx;
+  font-size: 25rpx;
+  color: #999999;
+  line-height: 28rpx;
+  margin: 20rpx 10rpx 0 10rpx;
+}
+radio .wx-radio-input{
+  width: 26rpx;
+  height: 26rpx;
+  border-radius: 50%;
+}
+radio .wx-radio-input.wx-radio-input-checked::before{
+  width: 46rpx;
+  height: 46rpx;
+  text-align: center;
+  line-height: 46rpx;
+  border-radius: 50%;
+  background: #82ccd6ee;
+  color: #ffffff;
+}
+.option{
+  width: 224rpx;
+  height: 84rpx;
+  display: flex;
+  justify-content: space-between
+}
+.revise,.del{
+  width: 110rpx;
+  height: 84rpx;
+  font-size: 25rpx;
+  line-height: 22rpx;
+  display: flex;
+  justify-content: space-around
+}
+.revisePic{
+  width: 28rpx;
+  height: 32rpx;
+  margin-top: 24rpx;
+}
+.describe,.delDescribe{
+  width: 72rpx;
+  height: 22rpx;
+  text-align: center;
+  margin-top: 30rpx;
+  color: #999999;
+}
+.describe{
+  border-right: 2rpx solid #e6e6e6;
+}
+.delPic{
+  width: 32rpx;
+  height: 30rpx;
+  margin-top: 26rpx;
+}
+.add{
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 98rpx;
+  font-size: 28rpx;
+  line-height: 98rpx;
+  text-align: center;
+  background: #82ccd6ee;
+  color: #ffffff;
+  border-radius: 0;
+}
