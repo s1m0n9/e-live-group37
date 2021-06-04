@@ -57,7 +57,7 @@ Page({
   },
   next : function(){
     wx.navigateTo({
-      url: '/pages/login/login',
+      url: '/pages/login/resetPasswd2',
     })
   }
  

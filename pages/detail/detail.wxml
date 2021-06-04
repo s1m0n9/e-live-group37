@@ -9,12 +9,15 @@
 <view class="detail_frame">
   <view id="from">From: {{from}}</view>
   <view id="to">To: {{to}}</view>
-  <view id="description">{{description}}</view>
   <view id="type">{{type}}</view>
-<view class="image" wx:for="{{image}}">
-    <image src="{{item}}"></image>
-</view>
-  
+  <view id="gender">{{gender}}</view>
+  <view id="ddl">Before  {{dates}}  {{times}}</view>
+  <view id="description1">Description: </view>
+  <view id="description2">{{description}}</view>
+    <image class="productImg" src="{{image}}"></image>
+ </view> 
+
   <button class="b1" bindtap="take">Take the order</button>
   <button class="b2" bindtap="chat">Chat</button>
-</view>
+
+<view class="bottom_blank"></view>

@@ -3,15 +3,15 @@
  <view class="bd" style="flex:2;">
   <form class="login-form">
     <view class="input-group {{userid_focus ? 'active' : ''}}">
-      <text class="input-label">邮箱</text>
-      <input f cursor-spacing="30" id="userid" maxlength="20" placeholder="请输入绑定的邮箱" bindinput="useridInput" bindfocus="inputFocus" bindblur="inputBlur" />
+      <text class="input-label">E-mail</text>
+      <input f cursor-spacing="30" id="userid" maxlength="20" placeholder="E-mail Address:" bindinput="useridInput" bindfocus="inputFocus" bindblur="inputBlur" />
     </view>
     <view class="input-group {{passwd_focus ? 'active' : ''}}">
-      <text class="input-label">电话</text>
-      <input type="number" password="true" cursor-spacing="30" id="passwd" placeholder="请输入绑定的电话号码" bindinput="passwdInput" bindfocus="inputFocus" bindblur="inputBlur" />
+      <text class="input-label">TEL</text>
+      <input type="number" password="true" cursor-spacing="30" id="passwd" placeholder="Enter phone number" bindinput="passwdInput" bindfocus="inputFocus" bindblur="inputBlur" />
     </view>
   </form>
   <button class="confirm-btn" style="opacity :{{opacity}};  background: #ED6D2C; color: #fff;" bindtap="next" disabled="{{disable}}" >
-      下一步
+      Next
   </button>
 </view>

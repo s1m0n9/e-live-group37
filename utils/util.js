@@ -29,6 +29,6 @@ function getTimeLeft(datetimeTo){
      
     return days + "天" + hours + "时" + minutes + "分" + seconds + "秒"
   }
-  module.exports = {
-    getTimeLeft: getTimeLeft
+  module.exports={
+    formatTime
   }

@@ -17,7 +17,7 @@ Page({
   },
   next : function(){
     wx.navigateTo({
-      url: 'findback',
+      url: '/pages/login/resetPasswd1',
     })
   },
   

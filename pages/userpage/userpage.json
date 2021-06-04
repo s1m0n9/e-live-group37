@@ -1,4 +1,7 @@
 {
+  "usingComponents": {
+    "tabbar": "../../tabbarComponent/tabbar" 
+  },
   "backgroundTextStyle": "light",
   "navigationBarTitleText": "mine",
   "navigationBarTextStyle": "black"

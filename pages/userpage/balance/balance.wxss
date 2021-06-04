@@ -39,6 +39,18 @@ page{
   color: #ffffff;
   margin:102rpx 55rpx 0 0;
 }
+.transferout{
+  width: 180rpx;
+  height: 60rpx;
+  background: red;
+  border-radius: 36rpx;
+  border: 2rpx solid #ffffff;
+  font-size: 32rpx;
+  line-height: 52rpx;
+  text-align: center;
+  color: #ffffff;
+  margin:102rpx 55rpx 0 0;
+}
 .swiper-tab{
   width: 100%;  
   border-bottom:2rpx solid #ededed;

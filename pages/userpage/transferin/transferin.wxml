@@ -5,12 +5,9 @@
       <view class='recharge'>transfer amount</view>
       <view class='rechargeInput'>
         <label for="sum">¥</label>
-        <input id='sum'></input>
+        <input id='sum' bindinput="MoneyInput" type="number" bindtap="amend" ></input>
       </view>
     </view>
-    <button class='submit' form-type='submit'>transfer</button>
+    <button class='submit' form-type='submit' bindtap="reset">transfer in</button>
   </form>
 </view>
-
-
-

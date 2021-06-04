@@ -18,6 +18,10 @@ App({
       traceUser: true
     })
   },
+  onShow: function () {
+    //隐藏系统tabbar
+    //wx.hideTabBar();
+  },
   getSystemInfo: function () {
     var that = this;
     wx.getSystemInfo({
@@ -42,43 +46,44 @@ App({
   },
   globalData: {
     //systemInfo: null,//客户端设备信息
-    //userInfo: null,
+    name: null,
+    value: '1',
     tabBar: {
+      "custom": true,
       "backgroundColor": "#ffffff",
       "color": "#979795",
       "selectedColor": "#1c1c1b",
-      "list": [
-        {
-          "pagePath": "/pages/index/index",
-          "iconPath": "icon/icon_home.png",
-          "selectedIconPath": "icon/icon_home_HL.png",
-          "text": "首页"
-        },
-        {
-          "pagePath": "/pages/msg/msg",
-          "iconPath": "icon/sx.png",
-          "selectedIconPath": "icon/sx_HL2.png",
-          "text": "私信"
-        },
-        {
-          "pagePath": "/pages/middle/middle",
-          "iconPath": "icon/icon_release.png",
-          "isSpecial": true,
-          "text": "发布"
-        },
-        {
-          "pagePath": "/pages/money/money",
-          "iconPath": "icon/icon_SJ.png",
-          "selectedIconPath": "icon/icon_SJ_HL.png",
-          "text": "赏金"
-        },
-        {
-          "pagePath": "/pages/mine/mine",
-          "iconPath": "icon/icon_mine.png",
-          "selectedIconPath": "icon/icon_mine_HL.png",
-          "text": "我的"
-        }
-      ]
+      "list": [{
+        "pagePath": "/pages/homepage/homepage",
+        "text": "home",
+        "iconPath": "icon/icon_home.png",
+        "selectedIconPath": "icon/icon_home_HL.png"
+      },
+      {
+        "pagePath": "/pages/msg/msg",
+        "text": "message",
+        "iconPath": "icon/sx.png",
+        "selectedIconPath": "icon/sx_HL2.png"  
+      },
+      {
+        "pagePath": "/pages/post/post",
+        "text": "post",
+        "iconPath": "icon/icon_release.png",
+        "isSpecial": true,
+        "selectedIconPath": "icon/icon_release.png"
+      },
+      {
+        "pagePath": "/pages/order/order",
+        "text": "order",
+        "iconPath": "icon/icon_SJ.png",
+        "selectedIconPath": "icon/icon_SJ_HL.png" 
+      },
+      {
+        "pagePath": "/pages/userpage/userpage",
+        "text": "mine",
+        "iconPath": "icon/icon_mine.png",
+        "selectedIconPath": "icon/icon_mine_HL.png"
+      }]
     }
-  }
+  },
 })

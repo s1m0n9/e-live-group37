@@ -81,5 +81,6 @@ page{
    .confirm-btn1 {
     margin-left: 200rpx;
     margin-right: 200rpx;
-    font-size: 36rpx;
-   }
+    font-size: 30rpx;
+    text-decoration-line: underline;
+   } 

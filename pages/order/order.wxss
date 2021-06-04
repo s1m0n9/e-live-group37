@@ -1,159 +1,204 @@
 /* pages/order/order.wxss */
 page {
-  background: #ecebeb77;
-}
+  background-color: #b3b1b134;
+ }
+  
+ image {
+   vertical-align: middle;
+ }
+  
+ .czr {
+   width: 30rpx;
+   height: 34rpx;
+ }
+  
+ .fkr {
+   width: 34rpx;
+   height: 38rpx;
+ }
+  
  
-image {
-  vertical-align: middle;
-}
+ .item {
+   display: flex;
+   justify-content: space-around;
+   background-color: white;
+   line-height: 100rpx;
+   border-radius: 20rpx;
+ }
+  
+ .item text {
+   font-size: 30rpx;
+   font-weight: 500;
+   color: #5D677E;
+   padding-left: 10rpx;
+ }
+  
+ .active {
+   border-bottom: 4rpx solid #a70bf08e;
+ }
+ .activeCol{
+   color: #f00b7da8 !important;
+ }
  
-.czr {
-  width: 30rpx;
-  height: 34rpx;
-}
+ /*订单列表*/
+ /*订单背景#f5f5f5#adeaeacc*/
+ .orderDetails {
+   background: #fff;
+   border-radius: 28rpx;
+   margin-top: 20rpx;
+   margin-left: 25rpx;
+   margin-right: 25rpx;
+   /* border-right: 8rpx solid rgba(67, 205, 247, 0.493);
+   border-bottom: 8rpx solid rgba(67, 205, 247, 0.493);
+   border-top: 8rpx solid rgba(67, 205, 247, 0.493);
+   border-left: 8rpx solid rgba(67, 205, 247, 0.493); */
+ }
  
-.fkr {
-  width: 34rpx;
-  height: 38rpx;
-}
+ .orderListTitle {
+   height: 100rpx;
+   line-height: 125rpx;
+   border-bottom: 8rpx solid rgba(247, 67, 193, 0.212);
+ }
+  
+ .orderListTitle .userName {
+   padding-right: 50rpx;
+   margin-left: 30rpx;
+   font-size: 30rpx;
+   color:  rgba(26, 61, 107, 0.925);
+   font-weight: bold;
+ }
+  
+ .orderListTitle .orderStates {
+   float: right;
+   margin-right: 45rpx;
+   color: #2f7b27;
+   font-size: 42rpx;
+   font-style: inherit;
+ }
+  
+ .orderListDetails {
+   display: flex;
+   height: 200rpx;
+   width: 700rpx;
+ }
+  
  
-
-.item {
-  display: flex;
-  justify-content: space-around;
-  background-color: white;
-  line-height: 100rpx;
-  border-radius: 20rpx;
-}
+  
+ .orderListDetails .productInfo {
+   flex: 4;
+   height:100rpx;
+   width:120rpx;
+ }
+ .orderDetails .productInfo .confirmbtn{
+   font-size: 25rpx;
+   border-color: transparent ;
+   width: 200rpx;
+   color: rgba(255, 255, 255, 0.925);
+   background-color:#82ccd68f;
+   bottom: 20rpx;
+   left: 230rpx;
+   font-weight: 800;
+ }
+ .orderDetails .productInfo .confirmbtn::after{
+   border: none;
+ }
+ .orderDetails .productInfo .cancel{
+   font-size: 25rpx;
+   border-color: transparent ;
+   width: 200rpx;
+   color: rgba(255, 255, 255, 0.925);
+   background-color:#f84f658f;
+   bottom: 20rpx;
+   left: 230rpx;
+   font-weight: 800;
+ }
+ .productPrice1{
+   font-size: 60rpx;
+   margin-left: 30rpx;
+   height: 100rpx;
+   color: cadetblue;
+ }
+ .orderDetails .productInfo .cancel::after{
+   border: none;
+ }
+ .orderListDetails .productInfo .productType {
+   height:50rpx;
+   width:400px;
+   margin-left: 20rpx;
+   font-size:36rpx;
+   overflow: hidden;
+   display: -webkit-box;
+   -webkit-line-clamp: 2;
+   -webkit-box-orient: vertical;
+   margin-bottom:10px;
+   color: black;
+ }
+ .orderListDetails .productInfo .productTitle {
+   font-size:36rpx;
+   height:75rpx;
+   width:400px;
+   margin-top: 20rpx;
+   margin-left: 20rpx;
+   overflow: hidden;
+   display: -webkit-box;
+   -webkit-line-clamp: 2;
+   -webkit-box-orient: vertical;
+   margin-bottom:10px;
+   color: black;
+ }
  
-.item text {
-  font-size: 30rpx;
-  font-weight: 500;
-  color: #5D677E;
-  padding-left: 10rpx;
-}
+ .orderListDetails .productInfo .productLoca {
+   font-size:36rpx;
+   height:75rpx;
+   width:200px;
+   margin-left: 20rpx;
+   overflow: hidden;
+   display: -webkit-box;
+   -webkit-line-clamp: 2;
+   -webkit-box-orient: vertical;
+   margin-bottom:10px;
+   color: black;
+ }
+ .orderListDetails .productInfo .productLimit {
+   height:70rpx;
+   margin-left: 20rpx;
+   font-size:36rpx;
+   overflow: hidden;
+   display: -webkit-box;
+   -webkit-line-clamp: 2;
+   -webkit-box-orient: vertical;
+   margin-bottom:10px;
+   color: black;
+ }
  
-.active {
-  border-bottom: 4rpx solid #a70bf08e;
-}
-.activeCol{
-  color: #f00b7da8 !important;
-}
-
-/*订单列表*/
-/*订单背景#f5f5f5#adeaeacc*/
-.orderDetails {
-  background: #fff;
-  border-radius: 28rpx;
-  margin-top: 20rpx;
-  margin-left: 25rpx;
-  margin-right: 25rpx;
-  border-right: 8rpx solid rgba(67, 205, 247, 0.493);
-  border-bottom: 8rpx solid rgba(67, 205, 247, 0.493);
-  border-top: 8rpx solid rgba(67, 205, 247, 0.493);
-  border-left: 8rpx solid rgba(67, 205, 247, 0.493);
-}
-
-.orderListTitle {
-  height: 100rpx;
-  line-height: 125rpx;
-  border-bottom: 8rpx solid rgba(247, 67, 193, 0.212);
-}
+ .orderListDetails .productInfo .productPrice {
+   font-size:36rpx;
+   overflow: hidden;
+   display: -webkit-box;
+   margin-left: 20rpx;
+   -webkit-line-clamp: 2;
+   -webkit-box-orient: vertical;
+   margin-bottom:10px;
+   color: black;
+ }
  
-.orderListTitle .userName {
-  padding-right: 50rpx;
-  margin-left: 30rpx;
-  font-size: 36rpx;
-  color:  rgba(26, 61, 107, 0.925);
-  font-weight: bold;
-}
  
-.orderListTitle .orderStates {
-  float: right;
-  margin-right: 45rpx;
-  color: #2f7b27;
-  font-size: 42rpx;
-  font-style: inherit;
-}
  
-.orderListDetails {
-  display: flex;
-  height: 300rpx;
-  width: 700rpx;
-  border-bottom: 8rpx solid rgba(67, 205, 247, 0.493);
-}
+  
+ .productCount {
+   height: 80rpx;
+   line-height: 80rpx;
+  
+ }
+  
+ .productCount>view {
+   float: right;
+   margin-right: 30rpx;
+   color: #c53c12;
+   font-size: 40rpx;
+ }
  
-
- 
-.orderListDetails .productInfo {
-  flex: 4;
-  height:300rpx;
-  width:120rpx;
-}
-.orderDetails .productInfo .confirmbtn{
-color: rgba(26, 61, 107, 0.925);
-}
- 
-.orderListDetails .productInfo .productType {
-  height:100rpx;
-  margin-left: 20rpx;
-  font-size:36rpx;
-  overflow: hidden;
-  display: -webkit-box;
-  -webkit-line-clamp: 2;
-  -webkit-box-orient: vertical;
-  margin-bottom:10px;
-  color: black;
-}
-
-.orderListDetails .productInfo .productLoca {
-  font-size:36rpx;
-  height:75rpx;
-  width:200px;
-  margin-left: 20rpx;
-  overflow: hidden;
-  display: -webkit-box;
-  -webkit-line-clamp: 2;
-  -webkit-box-orient: vertical;
-  margin-bottom:10px;
-  color: black;
-}
-.orderListDetails .productInfo .productLimit {
-  height:100rpx;
-  margin-left: 20rpx;
-  font-size:36rpx;
-  overflow: hidden;
-  display: -webkit-box;
-  -webkit-line-clamp: 2;
-  -webkit-box-orient: vertical;
-  margin-bottom:10px;
-  color: black;
-}
-
-.orderListDetails .productInfo .productPrice {
-  font-size:36rpx;
-  overflow: hidden;
-  display: -webkit-box;
-  margin-left: 20rpx;
-  -webkit-line-clamp: 2;
-  -webkit-box-orient: vertical;
-  margin-bottom:10px;
-  color: black;
-}
-
-
-
- 
-.productCount {
-  height: 80rpx;
-  line-height: 80rpx;
- 
-}
- 
-.productCount>view {
-  float: right;
-  margin-right: 30rpx;
-  color: #c53c12;
-  font-size: 40rpx;
-}
-
+ .bottom_blank {
+   width: 100%;
+   height: 200rpx;
+ }

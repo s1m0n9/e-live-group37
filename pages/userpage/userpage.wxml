@@ -12,6 +12,7 @@
       <view class='headBorder'><open-data type="userAvatarUrl" class="Head"></open-data> </view>
       <view class='dian'></view>
       <view class='nameBox'><open-data type="userNickName" lang="zh_CN" class="name"></open-data> </view>
+      
      
     </view>
     <view class='jiange'></view>
@@ -43,12 +44,12 @@
   <view class='list' bindtap='view'>
     <view class='list_left'>
       <image class='listIcon' src='../../image/view.png'></image>
-      <view class='listName'>feedback</view>
+      <button class='feedback' open-type="contact" bindcontact="handleContact">contact us</button>
     </view>
     <image src='../../image/jiantou.png' class='jiantou'></image>
   </view>
   <view class='list'>
-    <view class='list_left'>
+    <view class='list_left'bindtap='share'>
       <image class='listIcon' src='../../image/share.png'></image>
       <view class='listName'>share to friends</view>
     </view>
@@ -56,3 +57,5 @@
   </view>
   <button class='signOut' bindtap='signOut'>log out</button>
 </view>
+<view class="bottom_blank"></view>
+<tabbar tabbar="{{tabbar}}"></tabbar>

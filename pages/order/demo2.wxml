@@ -9,13 +9,13 @@
 <view class="detail-container">
   <view class="deal-header">
 		<view class="deal-header-tit">
-			<view class="deal-header-tit-list dea-headerl-tit-left">待付款</view>
+			<view class="deal-header-tit-list dea-headerl-tit-left">{{state}}</view>
 			
     </view>
-    <view class="deal-header-msg">
+    <!--<view class="deal-header-msg">
 			<text class="deal-header-msg-list deal-header-msg-one">等待买家付款</text>
-			<text class="deal-header-msg-list deal-header-msg-two">29分59秒后，如果买家未付款，订单自动取消。</text>
-		</view>
+			<text class="deal-header-msg-list deal-header-msg-two">{{gender}}，如果买家未付款，订单自动取消。</text>
+		</view>-->
   </view>
 
 	<view class="deal-message">
@@ -25,17 +25,17 @@
 					<image mode="widthFix" class="box-main-left-img" src="{{pic}}"></image>
 				</view>
 				<view class="box-main-right">
-					<view class="box-main-right-tit">{{name}}</view>
+					<view class="box-main-right-tit">{{type}}</view>
 					<view class="box-main-right-text-left">￥{{money}}</view>
           <view class="box-main-right-text-right">
             <view class="distance">
-<text class="const-text">publisher:</text><text class="const-text">xxx</text>
+<text class="const-text">publisher:</text><text class="const-text">{{name}}</text>
             </view></view>
 				</view>
       </view>
       
 			<view class="distance">
-<text class="const-text"><text class="detail_sp">Note:.......{{sp}}</text></text>        	
+<text class="const-text"><text class="detail_sp">Gender:{{gender}}</text></text>        	
     
 			</view>
     </view>
@@ -52,21 +52,21 @@
       <text class="connectuser-list-mini connectuser-left-four">TO:</text>
 			</view>
 			<view class="connectuser-list connectuser-center">
-				<text class="connectuser-list-mini connectuser-left-one"><text class="detail">{{detail}}</text></text>
-        <text class="connectuser-list-mini connectuser-left-two"><text class="detail_time">{{time}}</text></text>
+				<text class="connectuser-list-mini connectuser-left-one"><text class="detail">{{content}}</text></text>
+        <text class="connectuser-list-mini connectuser-left-two"><text class="detail_time">{{dates}} {{times}}</text></text>
        
         <view class="distance">
 	 			<image class="icon" src="../../tabbarComponent/icon/dt.png"></image>
-            	<text class="address">文星广场菜鸟驿站</text>
+            	<text class="address">{{from}}</text>
       </view>    
         <view class="distance">
 	 			<image class="icon" src="../../tabbarComponent/icon/dt.png"></image>
-            	<text class="address">文星A05</text>
+            	<text class="address">{{to}}</text>
 			</view>
 			</view>
 			<view class="connectuser-list connectuser-right">
 			<button class="connectuser-right-btn" type="default" size="{{defaultSize}}" loading="{{loading}}" plain="{{plain}}"
-        disabled="{{disabled}}" bindtap="default" hover-class="other-button-hover"> 订单信息 </button>
+        disabled="{{disabled}}" bindtap="default" hover-class="other-button-hover">order info</button>
 			</view>
 		</view>
 <view class="horizon"></view>
@@ -79,18 +79,18 @@
 			</view>
 			<view class="connectuser-list connectuser-center">
 				<text class="connectuser-list-mini connectuser-left-one"><text class="detail_time">{{time}}</text></text>
-        <text class="connectuser-list-mini connectuser-left-two"><text class="detail_time">{{time}}</text></text>
-        <text class="connectuser-list-mini connectuser-left-one"> <text class="detail">xxx</text></text>
-        <text class="connectuser-list-mini connectuser-left-one"><text class="detail">111111111111</text></text>
+        <text class="connectuser-list-mini connectuser-left-two"><text class="detail_time">{{taketime}}</text></text>
+        <text class="connectuser-list-mini connectuser-left-one"> <text class="detail">{{takename}}</text></text>
+        <text class="connectuser-list-mini connectuser-left-one"><text class="detail">{{takephone}}</text></text>
 			</view>
 			<view class="connectuser-list connectuser-right">
 			<button class="connectuser-right-btn" type="default" size="{{defaultSize}}" loading="{{loading}}" plain="{{plain}}"
-        disabled="{{disabled}}" bindtap="default" hover-class="other-button-hover"> 接单人信息 </button>
+        disabled="{{disabled}}" bindtap="default" hover-class="other-button-hover">receiver info</button>
 			</view>
 		</view>
 <view class="horizon"></view>
 
-<button class="b1" >Take the order</button>
+<button class="b1" >Call</button>
   <button class="b2" >Chat</button>
   <button class="b3" >Cancel the order</button>
 </view>

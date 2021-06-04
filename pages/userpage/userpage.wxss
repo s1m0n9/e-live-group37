@@ -138,7 +138,7 @@ page{
   margin: 36rpx 0 0 10rpx;
 }
 .listIcon{
-  width: 50rpx;
+  width: 60rpx;
   height: 50rpx;
 }
 .listName{
@@ -148,7 +148,7 @@ page{
   font-size: 26rpx;
   color: #404040;
   margin-top: 5rpx;
-  margin-left: 10rpx;
+  margin-left: 38rpx;
 }
 .jiantou{
   width: 16rpx;
@@ -161,6 +161,21 @@ page{
   display: flex;
   justify-content: space-between;
 
+}
+.feedback{
+  background-color: transparent;
+  border-color: transparent;
+  border: none;
+  width: 400rpx;
+  height: 80rpx;
+  display: inline-block;
+  font-size: 26rpx;
+  color: #404040;
+  margin-top: -10rpx;
+  margin-left: -112rpx;
+}
+.feedback::after{
+  border: none;
 }
 .check{
   margin-left: -120rpx;
@@ -178,4 +193,8 @@ page{
   border-radius: 39rpx;
   background: #82ccd6ee;
   margin-top: 240rpx;
+}
+.bottom_blank {
+  width: 100%;
+  height: 200rpx;
 }

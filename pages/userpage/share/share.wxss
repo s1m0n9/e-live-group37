@@ -1,0 +1,13 @@
+page{
+  background: rgb(154,194,187);
+}
+.share{
+  width: 100%;
+}
+.notice{
+  text-align: center;
+  font-family: 'Courier New', Courier, monospace;
+  font-weight: 800;
+  color: #f4ea2a;
+  font-size: 42rpx;
+}

@@ -1,30 +1,34 @@
 {
   "pages":[
- 
+    "pages/login/login" , 
+    "pages/homepage/homepage" ,
+  
+    
     "pages/post/post",
-    "pages/login/login" ,
-    "pages/homepage/homepage",
+    
+    "pages/userpage/userpage",
+    "pages/chatroom/chatroom" ,  
     "pages/index/index",
-    "pages/ogin/register",
     "pages/login/resetPasswd2",
     "pages/login/resetPasswd1",
     "pages/login/findback",
-    "pages/chat/chat" ,
+    
     "pages/msg/msg",
-   
     "pages/order/order",
-    "pages/userpage/userpage",
     
     "pages/detail/detail"
   ],
   "window":{
     "backgroundTextStyle":"dark",
     "navigationBarBackgroundColor": "#ADEAEA",
-    "navigationBarTitleText": "Bounty Hunter",
+    "navigationBarTitleText": "E-live",
     "navigationBarTextStyle":"black"
   },
   "tabBar": {
-    
+    "custom": true,
+    "backgroundColor": "#ffffff",
+    "color": "#979795",
+    "selectedColor": "#1c1c1b",
     "list": [{
       "pagePath": "pages/homepage/homepage",
       "text": "home",
@@ -37,13 +41,7 @@
       "iconPath": "icon/sx.png",
       "selectedIconPath": "icon/sx_HL2.png"  
     },
-    {
-      "pagePath": "pages/post/post",
-      "text": "post",
-      "iconPath": "icon/icon_release.png",
-      "isSpecial": true,
-      "selectedIconPath": "icon/icon_release.png"
-    },
+ 
     {
       "pagePath": "pages/order/order",
       "text": "order",

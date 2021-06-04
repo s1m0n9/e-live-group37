@@ -1,10 +1,12 @@
 // pages/msg/msg.js
+const app = getApp()
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
+    tabbar: {},
     chat_list:[
       {head_image: "https://www.xjtlu.edu.cn/zh/assets/image-cache/images/campus/South%20Campus/south-campus021.80bf710a.jpg", name: "Rookie", text:"hello world!", time:"23:00"},
       {head_image: "http://5b0988e595225.cdn.sohucs.com/images/20190610/e92bb3e60701458ab5cc5b5c00c01b12.jpeg", name: "HJS", text:"I am handsome enough", time:"10:30"},
@@ -16,7 +18,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    app.editTabbar();
   },
 
   /**
@@ -30,7 +32,13 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    if (typeof this.getTabBar === "function" &&
+    this.getTabBar()){
+      this.getTabBar().setData({
+        selected: 0,
+        show:true
+      })
+    }
   },
 
   /**
@@ -89,7 +97,7 @@ Page({
     var headimage=e.currentTarget.dataset.head_image;
     var name=e.currentTarget.dataset.name;
     wx.navigateTo({
-      url: '../chat/chat?headimage='+headimage+'&name='+name,
+      url: '../chatroom/chatroom?headimage='+headimage+'&name='+name,
     })  
  }
 })

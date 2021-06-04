@@ -1,5 +1,24 @@
 /* pages/demo2/demo2.wxss */
 /* pages/post/post-detail/post-detail.wxss */
+
+.orderListDetails {
+  display: flex;
+  height: 300rpx;
+  border-bottom: 1rpx solid #adafb3;
+}
+.box-main .productImg {
+  flex: 1;
+  height:180rpx;
+  width:120px;
+  margin-top: 10rpx;
+  margin-left: 20rpx;
+}
+ 
+.box-main .productImg image {
+  width: 130px;
+  height: 150%;
+}
+
 .checktabs {
   width: 100%;
   height: 1500rpx;
@@ -111,7 +130,7 @@
   font-family: MicroSoft Yahei;
 }
 .deal-header{
-  height: 240rpx;
+  height: 140rpx;
   width: 100%;
   background-color: rgba(16, 182, 223, 0.205);
 }
@@ -134,6 +153,7 @@
 .deal-headerl-tit-left{
   border-right:3rpx #ffffff solid; 
 }
+/*
 .deal-header-msg{
   height: 90rpx;
   padding-top: 20rpx;
@@ -152,6 +172,7 @@
 .deal-header-msg-two{
   font-size: 24rpx;
 }
+*/
 
 .deal-message{
   margin-top: 20rpx; 

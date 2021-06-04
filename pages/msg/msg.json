@@ -1,4 +1,10 @@
 {
-  "usingComponents": {},
-  "enablePullDownRefresh": true
+  "usingComponents": {
+    "tabbar": "../../tabbarComponent/tabbar" 
+   
+  },
+  "enablePullDownRefresh": true,
+  "backgroundTextStyle": "light",
+  "navigationBarTitleText": "message",
+  "navigationBarTextStyle": "black"
 }

@@ -6,6 +6,7 @@ var keyHeight = 0;
 var windowWidth = wx.getSystemInfoSync().windowWidth;
 var windowHeight = wx.getSystemInfoSync().windowHeight;
 
+
 Page({
 	
 	data: {
@@ -13,7 +14,8 @@ Page({
 		textInputValue: '',
 		chats:[],
 		openId: '',
-    
+		NAME:'',
+		
 		
 	},
 
@@ -25,7 +27,8 @@ wx.getSetting({
 			wx.getUserInfo({
 				success: res=>{
 					this.setData({
-						userInfo:res.userInfo
+						userInfo:res.userInfo,
+						NAME:app.globalData.name
 					})
 				}
 			})
@@ -50,9 +53,7 @@ wx.getSetting({
 		const {result} = await wx.cloud.callFunction({
 			name:'talk'
 		})
-		this.setData({
-			openId: result.openid
-		})
+	
 	},
 onChange(snapshot){
 console.log(snapshot)
@@ -84,6 +85,7 @@ if(snapshot.type === 'init'){
 			})
 		}
 	},
+	
 	onTextInput(e){
 		this.setData({
 			textInputValue:e.detail.value
@@ -110,9 +112,11 @@ return
 			avatar: this.data.userInfo.avatarUrl,
 			nickName:this.data.userInfo.nickName,
 			msgText:'text',
+			Name:app.globalData.name,
 			textContent:this.data.textInputValue,
 			sendTime: new Date(),
 			sendTimeTS: Date.now(),
+
 		}
 		chatCollection.add({
 			data: doc,
