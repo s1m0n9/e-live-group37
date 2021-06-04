@@ -1,8 +1,8 @@
 // pages/demo2/demo2.js
 //var postsData = require('../../pages/money/detail.js')
 var app = getApp();
+const db = wx.cloud.database();
 Page({
-
   /**
    * 页面的初始数据
    */
@@ -13,7 +13,18 @@ Page({
     sp:'',
     detail:'',
     money:'',
-    pic:''
+    pic:'',
+    from:'',
+    to:'',
+    type:'',
+    gender:'',
+    content:'',
+    takename:'',
+    times:'',
+    dates:'',
+    taketime:'',
+    takeid:'',
+    takephone:''
 
 },
 
@@ -36,9 +47,23 @@ bindReply: function (e) {
       sp:onPostTap[3],
       detail:onPostTap[4],
       money:onPostTap[5],
-      pic:onPostTap[6]
-    })
-    
+      pic:onPostTap[6],
+      from:onPostTap[7],
+      to:onPostTap[8],
+      type:onPostTap[9],
+      gender:onPostTap[10],
+      content:onPostTap[11],
+      takename:onPostTap[12],
+      times:onPostTap[13],
+      dates:onPostTap[14],
+      taketime:onPostTap[15],
+      takeid:onPostTap[16],      
+    }) 
+    wx.cloud.database().collection('adminlist').where({'_openid':onPostTap[16]}).get().then(res => {     
+        this.setData({
+          takephone: res.data[0].phoneNum
+        })
+      })
   },
 
   /**

@@ -1,5 +1,5 @@
 {
-  "cloudfunctionRoot": "cloudfunctions/",
+  "cloudfunctionRoot": "pages/cloudfunctions/",
   "description": "项目配置文件",
   "packOptions": {
     "ignore": []
@@ -7,7 +7,7 @@
   "setting": {
     "urlCheck": true,
     "es6": true,
-    "enhance": false,
+    "enhance": true,
     "postcss": true,
     "preloadBackgroundData": false,
     "minified": true,
@@ -41,9 +41,8 @@
     "minifyWXSS": true
   },
   "compileType": "miniprogram",
-  "libVersion": "2.16.1",
-  "appid": "wx7f15633c0bdd098a",
-  "projectname": "E-live",
+  "libVersion": "2.17.0",
+  "projectname": "E-live%20project(new)",
   "debugOptions": {
     "hidedInDevtools": []
   },
@@ -53,6 +52,7 @@
     "servePath": ""
   },
   "isGameTourist": false,
+  "appid": "wx7f15633c0bdd098a",
   "condition": {
     "search": {
       "list": []

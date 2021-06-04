@@ -2,39 +2,33 @@
 const app = getApp()
 const db = wx.cloud.database();//初始化数据库
 var util = require('../../utils/util.js');
+
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
+    tabbar: {},
     imgbox: [],//选择图片
     fileIDs: [],//上传云存储后的返回值
-    array:['No limited','The boy only','The girl only'],
+    array:['The boy only','The girl only','No limited'],
     array1:['Expressage','Purchasing agent', 'Take-out'],
     choseQuestionBank1:"Click on the select",
-    choseQuestionBank2:"Click on the select",
     inputValue: null,
     photo:'',
-    name:''
+    name:'',
+    dates:'Delivery Date',
+    times:'Delivery Time',
+    gender:"No limited"
   },
 
   bindPickerChange1: function (e) {
     var that=this
     that.setData({
-      gender: that.data.array[e.detail.value],
-      choseQuestionBank1: that.data.array[e.detail.value]
+      gender: that.data.array[e.currentTarget.dataset.flag]
     })
   },
-  bindPickerChange2: function (e) {
-    var that=this
-    that.setData({
-      type: that.data.array1[e.detail.value],
-      choseQuestionBank2: that.data.array1[e.detail.value]
-    })
-  },
-
-  
   // 删除照片 &&
   imgDelete1: function (e) {
     let that = this;
@@ -145,6 +139,7 @@ Page({
 
   //post发布数据库
   onLoad: function (options) {
+    app.editTabbar();
     var TIME = util.formatTime(new Date());
     this.setData({
       time: TIME,
@@ -181,7 +176,7 @@ Page({
   MoneyInput: function (e) {
     var that= this;
    that.setData({
-      money: e.detail.value
+      money: parseInt(e.detail.value) 
     });
   },
   ContentInput: function (e) {
@@ -226,7 +221,8 @@ Page({
           content: this.data.content,//获得content
           image: this.data.imgbox, //获得图片
           state: 'Free',
-          type: this.data.type
+          type: this.data.type,
+          DDL: this.data.dates+' '+this.data.times+' GMT+0800'
         },
         success: res => {
           // 在返回结果中会包含新创建的记录的 _id
@@ -236,18 +232,7 @@ Page({
           wx.showToast({
             title: 'Success',
           })	//成功将评论数据写入小程序云开发数据库
-          this.setData({
-            name: '',
-            time: '',
-            photo: '',
-            from: '',
-            to: '',
-            ddl:'',
-            money: '',
-            gender: '',
-            content: '',
-            image: ''
-          })
+          
         },
         
         fail: err => { //未成功写入数据库
@@ -276,6 +261,17 @@ Page({
         confirmText: 'I know',
       })
     }
+  },
+  checkTap(e) {
+    var that=this
+    that.setData({
+      type: that.data.array1[parseInt(e.currentTarget.dataset.flag)]
+    })
+  },
+  cancel(){
+    wx.switchTab({
+      url: "../homepage/homepage"
+    })  
   },
   /**
    * 生命周期函数--监听页面初次渲染完成

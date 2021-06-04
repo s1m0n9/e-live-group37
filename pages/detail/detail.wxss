@@ -6,7 +6,7 @@ page{
   border-top-right-radius: 28rpx;
   border-top-left-radius: 28rpx;
   width: 90%;
-  height: 200rpx;
+  height: 150rpx;
   margin-top: 30rpx;
   margin-left: 35rpx;
   background-color: white;
@@ -34,16 +34,16 @@ page{
   position: absolute;
 }
 .head #price1{
-  left: 480rpx;
-  margin-top: 60rpx;
-  font-size: 30rpx;
+  left: 460rpx;
+  margin-top: 40rpx;
+  font-size: 40rpx;
   color: rgb(201, 201, 201);
   position: absolute;
 }
 .head #price2{
   left: 570rpx;
-  margin-top: 60rpx;
-  font-size: 30rpx;
+  margin-top: 40rpx;
+  font-size: 45rpx;
   color: rgb(8, 212, 19);
   position: absolute;
 }
@@ -51,22 +51,90 @@ page{
   border-bottom-right-radius: 28rpx;
   border-bottom-left-radius: 28rpx;
   width: 90%;
-  height: 1000rpx;
-  margin-top: 30rpx;
+
+  margin-top: 10rpx;
+  margin-bottom: 300rpx;
   margin-left: 35rpx;
   background-color: white;
 } 
-.detail_frame #from, #to{
-  font-size: 35rpx;
+.detail_frame #from{
+  position: absolute;
+  word-break: break-all;
+  font-size: 40rpx;
+  font-family: 'Courier New', Courier, monospace;
+  font-weight: 1000;
+  height: 40rpx;
   margin-left: 20rpx;
+  margin-top: 20rpx;
+  padding: 10rpx;
+}
+.detail_frame #to{
+  font-size: 40rpx;
+  word-break: break-all;
+  position: absolute;
+  font-family: 'Courier New', Courier, monospace;
+  font-weight: 1000;
+  margin-left: 20rpx;
+  margin-top: 80rpx;
+  padding: 10rpx;
+}
+.detail_frame #type{
+  font-size: 40rpx;
+  position: absolute;
+  font-family: 'Courier New', Courier, monospace;
+  font-weight: 1000;
+  margin-left: 20rpx;
+  margin-top: 150rpx;
   padding: 10rpx;
 }
 
-.detail_frame #description{
+.detail_frame #gender{
+  font-size: 40rpx;
+  color: red;
+  position: absolute;
+  font-family: 'Courier New', Courier, monospace;
+  font-weight: 1000;
+  margin-left: 20rpx;
+  margin-top: 230rpx;
+  padding: 10rpx;
+}
+.detail_frame #ddl{
+  font-size: 38rpx;
+  color: red;
+  position: absolute;
+  font-family: 'Courier New', Courier, monospace;
+  font-weight: 1000;
+  margin-left: 20rpx;
+  margin-top: 300rpx;
+  padding: 10rpx;
+}
+.detail_frame #description1{
   margin-left: 30rpx;
-  font-size: 35rpx;
+  font-size: 40rpx;
+  position: absolute;
+  font-family: 'Courier New', Courier, monospace;
+  font-weight: 1000;
+  margin-top: 380rpx;
   word-break: break-all;
 }
+.detail_frame #description2{
+  margin-left: 30rpx;
+  font-size: 35rpx;
+  position: absolute;
+  font-family: 'Courier New', Courier, monospace;
+  font-weight: 800;
+  margin-top: 450rpx;
+  word-break: break-all;
+}
+
+.productImg {
+  margin-left: 30rpx;
+  position: absolute;
+  margin-top: 550rpx;
+  width: 300px;
+  height: 30%;
+}
+
 .b1{
   background:#82ccd6ee;
   font-size: 35rpx;
@@ -87,4 +155,8 @@ page{
   left: 390rpx;
   width: 300rpx;
   margin-bottom: 15rpx;
+}
+.bottom_blank {
+  width: 100%;
+  height: 1000rpx;
 }

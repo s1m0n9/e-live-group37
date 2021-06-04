@@ -29,46 +29,59 @@
   </scroll-view>
 
 <view hidden="{{!(isTabs == 1)}}">
-  <view class="info" bindtap="go_to_chat" wx:for="{{total_list}}" wx:for-item="de_info" data-from="{{de_info.from}}" data-to="{{de_info.to}}" data-ddl="{{de_info.ddl}}" data-money="{{de_info.money}}" data-content="{{de_info.content}}" data-time="{{de_info.time}}" data-image="{{de_info.image}}" data-photo="{{de_info.photo}}" data-name="{{de_info.name}}" data-type="{{de_info.type}}">
+  <view class="info" bindtap="{{de_info.state=='Free' ?'go_to_chat':''}}" wx:for="{{total_list}}" wx:for-item="de_info" data-from="{{de_info.from}}" data-to="{{de_info.to}}" data-money="{{de_info.money}}" data-content="{{de_info.content}}" data-time="{{de_info.time}}" data-gender="{{de_info.gender}}" data-times="{{de_info.times}}" data-dates="{{de_info.dates}}" data-image="{{de_info.image}}" data-photo="{{de_info.photo}}" data-name="{{de_info.name}}" data-type="{{de_info.type}}" data-id="{{de_info._id}}" data-oid="{{de_info._openid}}" wx:if="{{(de_info.state=='Free')||(de_info.state=='in progress')}}">
+    <view id="pos0">{{de_info.type}}</view>
     <view id="pos1" scroll-x>From: {{de_info.from}}</view>
     <view id="pos2" scroll-x>To: {{de_info.to}}</view>
-    <view id="post3">DDL: {{de_info.dates}}{{de_info.times}}</view>
+    <view id="post3">DDL: {{de_info.dates+" "+de_info.times}}</view>
     <view id="post4">Gender: {{de_info.gender}}</view>
     <view id="post5">￥{{de_info.money}}</view>
     <view id="post6">{{de_info.content}}</view>
     <view id="post7">{{de_info.time}}</view>
+    <image src="{{de_info.state == 'Free' ? '../../icon/free.png' : '../../icon/in_progress.png'}}"></image>
   </view>
 </view>
 
 <view hidden="{{!(isTabs == 2)}}">
-  <view class="info" bindtap="go_to_chat" wx:for="{{expressage_list}}" wx:for-item="de_info">
+  <view class="info" bindtap="{{de_info.state=='Free' ?'go_to_chat':''}}" wx:for="{{expressage_list}}" wx:for-item="de_info" data-from="{{de_info.from}}" data-to="{{de_info.to}}" data-money="{{de_info.money}}" data-content="{{de_info.content}}" data-time="{{de_info.time}}" data-gender="{{de_info.gender}}" data-times="{{de_info.times}}" data-dates="{{de_info.dates}}" data-image="{{de_info.image}}" data-photo="{{de_info.photo}}" data-name="{{de_info.name}}" data-type="{{de_info.type}}" data-id="{{de_info._id}}" data-oid="{{de_info._openid}}" wx:if="{{(de_info.state=='Free')||(de_info.state=='in progress')}}">
+    <view id="pos0">{{de_info.type}}</view>
     <view id="pos1">From: {{de_info.from}}</view>
     <view id="pos2">To: {{de_info.to}}</view>
-    <view id="post3">DDL: {{de_info.ddl}}</view>
+    <view id="post3">DDL: {{de_info.dates+"  "+de_info.times}}</view>
     <view id="post4">Gender: {{de_info.gender}}</view>
-    <view id="post5">￥{{de_info.price}}.00</view>
-    <view id="post6">{{de_info.description}}</view>
+    <view id="post5">￥{{de_info.money}}</view>
+    <view id="post6">{{de_info.content}}</view>
+    <view id="post7">{{de_info.time}}</view>
+    <image src="{{de_info.state == 'Free' ? '../../icon/free.png' : '../../icon/in_progress.png'}}"></image>
   </view>
 </view>
 
 <view hidden="{{!(isTabs == 3)}}">
-  <view class="info" bindtap="go_to_chat" wx:for="{{night_list}}" wx:for-item="de_info">
+  <view class="info" bindtap="{{de_info.state=='Free' ?'go_to_chat':''}}" wx:for="{{night_list}}" wx:for-item="de_info" data-from="{{de_info.from}}" data-to="{{de_info.to}}" data-money="{{de_info.money}}" data-content="{{de_info.content}}" data-time="{{de_info.time}}" data-gender="{{de_info.gender}}" data-times="{{de_info.times}}" data-dates="{{de_info.dates}}" data-image="{{de_info.image}}" data-photo="{{de_info.photo}}" data-name="{{de_info.name}}" data-type="{{de_info.type}}" data-id="{{de_info._id}}" data-oid="{{de_info._openid}}" wx:if="{{(de_info.state=='Free')||(de_info.state=='in progress')}}">
+    <view id="pos0">{{de_info.type}}</view>
     <view id="pos1" scroll-x>From: {{de_info.from}}</view>
     <view id="pos2" scroll-x>To: {{de_info.to}}</view>
-    <view id="post3">DDL: {{de_info.ddl}}</view>
+    <view id="post3">DDL: {{de_info.dates+" "+de_info.times}}</view>
     <view id="post4">Gender: {{de_info.gender}}</view>
-    <view id="post5">￥{{de_info.money}}.00</view>
+    <view id="post5">￥{{de_info.money}}</view>
     <view id="post6">{{de_info.content}}</view>
+    <view id="post7">{{de_info.time}}</view>
+    <image src="{{de_info.state == 'Free' ? '../../icon/free.png' : '../../icon/in_progress.png'}}"></image>
   </view>
 </view>
 
 <view hidden="{{!(isTabs == 4)}}">
-  <view class="info" bindtap="go_to_chat" wx:for="{{takeout_list}}" wx:for-item="de_info">
-    <view id="pos1" scroll-x>From: {{de_info.locate}}</view>
+  <view class="info" bindtap="{{de_info.state=='Free' ?'go_to_chat':''}}" wx:for="{{takeout_list}}" wx:for-item="de_info" data-from="{{de_info.from}}" data-to="{{de_info.to}}" data-money="{{de_info.money}}" data-content="{{de_info.content}}" data-time="{{de_info.time}}" data-gender="{{de_info.gender}}" data-times="{{de_info.times}}" data-dates="{{de_info.dates}}" data-image="{{de_info.image}}" data-photo="{{de_info.photo}}" data-name="{{de_info.name}}" data-type="{{de_info.type}}" data-id="{{de_info._id}}" data-oid="{{de_info._openid}}" wx:if="{{(de_info.state=='Free')||(de_info.state=='in progress')}}">
+    <view id="pos0">{{de_info.type}}</view>
+    <view id="pos1" scroll-x>From: {{de_info.from}}</view>
     <view id="pos2" scroll-x>To: {{de_info.to}}</view>
-    <view id="post3">DDL: {{de_info.ddl}}</view>
+    <view id="post3">DDL: {{de_info.dates+" "+de_info.times}}</view>
     <view id="post4">Gender: {{de_info.gender}}</view>
-    <view id="post5">￥{{de_info.price}}.00</view>
-    <view id="post6">{{de_info.description}}</view>
+    <view id="post5">￥{{de_info.money}}</view>
+    <view id="post6">{{de_info.content}}</view>
+    <view id="post7">{{de_info.time}}</view>
+    <image src="{{de_info.state == 'Free' ? '../../icon/free.png' : '../../icon/in_progress.png'}}"></image>
   </view>
 </view>
+<view class="bottom_blank"></view>
+<tabbar tabbar="{{tabbar}}"></tabbar>

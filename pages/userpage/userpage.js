@@ -2,9 +2,15 @@
 const app=getApp();
 Page({
   data: {
-
+    tabbar: {},
   },
-  
+  handleContact (e) {
+    console.log(e.detail.path)
+    console.log(e.detail.query)
+  },
+  onLoad(){
+    app.editTabbar();
+  },
   //个人中心的实名认证,点击跳转到实名认证
   realName() {
     
@@ -15,22 +21,23 @@ Page({
       url: '../userpage/balance/balance',
     })
   },
-  //个人中心的意见反馈,点击跳转到意见反馈
-  view() {
-    wx.navigateTo({
-      url: '../userpage/feedback/index',
-    })
-  },
+  
   //我的地址
   addr(){
     wx.navigateTo({
       url: '../userpage/address/address',
     })
   },
+  //share
+  share(){
+    wx.navigateTo({
+      url: '../userpage/share/share',
+    })
+  },
   //退出登录
   signOut(){
     wx.navigateTo({
-      url: '../userpage/log/log',
+      url: '../login/login',
     })
   }
 })

@@ -1,4 +1,6 @@
-
+const db = wx.cloud.database();
+const _ = db.command
+const app = getApp()
 Page({
 
   /**
@@ -14,7 +16,12 @@ Page({
     price:'',
     description:'',
     time:'',
-    image:[]
+    image:[],
+    id:'',
+    oid:'',
+    takename:'',
+    takephoto:'',
+    openid:''
   },
 
   /**
@@ -35,7 +42,10 @@ Page({
       description:detail[8],
       time:detail[9],
       image:detail[10],
-      type: detail[11]
+      type: detail[11],
+      state: detail[12],
+      id: detail[13],
+      oid: detail[14]
     })
   },
 
@@ -87,14 +97,82 @@ Page({
   onShareAppMessage: function () {
 
   },
+
   take: function(){
+    var that = this;
+    wx.cloud.callFunction({  //得到接单人openid
+      
+      name:'getOpenid',
+      complete:res=>{
+        var openid1 = res.result.openid
+        that.setData({
+          openid: openid1
+        })
+      }
+    }) 
+    console.log(this.data.openid)
+    if(this.data.takename==''){
+      wx.getUserProfile({
+        desc:'更新数据',
+        success:res=>{
+            var photo1=res.userInfo.avatarUrl;
+            var name1= res.userInfo.nickName;
+            that.setData({
+              takephoto:photo1,
+              takename:name1
+            })
+        }
+      })
+      return;
+    }
+    if(this.data.takename&&this.data.takephoto){
+    var id = this.data.id;
+    wx.cloud.callFunction({  //修改订单state
+      name:'updateState',
+      data:{
+          id:id
+      }
+    }).then(res=>{
+        console.log('success')
+    }).catch(res=>{
+        console.log('failed')
+    })
+    
+    if(this.data.openid){
+      wx.cloud.callFunction({  //增加接单人信息
+        name:'addMsg',
+        data:{
+            id:id,
+            openid: this.data.openid,
+            takename: this.data.takename,
+            takephoto: this.data.takephoto
+        }
+      }).then(res=>{
+        wx.showToast({
+          title: 'Reserve successfully',
+        })
+      }).catch(res=>{
+        wx.showToast({
+          title: 'Reserve failed',
+        })
+      })
+  
+    app.globalData.value='2';
     wx.switchTab({
-      url: "../order/order"
-    })  
+      url: '../order/order',
+      success: function (e) {  
+        var page = getCurrentPages().pop();  
+        if (page == undefined || page == null) return;  
+        page.onLoad();  
+      }  
+    })
+  }
+  }
   },
   chat: function(){
     wx.navigateTo({
-      url: "../chat/chat"
+      url: "../chatroom/chatroom"
     })  
+    
   }
 })

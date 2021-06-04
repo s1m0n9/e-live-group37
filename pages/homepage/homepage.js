@@ -1,41 +1,29 @@
 // pages/homepage/homepage.js
 const db = wx.cloud.database();
+const _ = db.command
+const app = getApp()
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
+    tabbar: {},
     navList:[
       "https://www.xjtlu.edu.cn/zh/assets/image-cache/images/campus/South%20Campus/south-campus021.80bf710a.jpg",
       "http://5b0988e595225.cdn.sohucs.com/images/20190610/e92bb3e60701458ab5cc5b5c00c01b12.jpeg"
     ],
-    total_list:[
-      // {locate: "WenXin department A05", to: "Rookie station", ddl: "This friday 10:00 am", gender: "girl only", price: "8", description:"Not big, it's urgent!", time:"3 days ago"},
-      // {locate: "Rookie station", to: "WenXin department A01", ddl: "Today 19:00 ", gender: "no limitation", price: "10",description:"Not big, it's urgent!", time:"2 days ago"},
-      // {locate: "CB", to: "Rookie station", ddl: "Tomorrow at noon", gender: "no limitation", price: "6", description:"Not big, it's urgent!",time:"1 hour ago"},
-      // {locate: "WenXin department A05", to: "Rookie station", ddl: "This friday 10:00 am", gender: "girl only", price: "8", description:"Not big, it's urgent!",time:"1 days ago"},
-      // {locate: "WenXin department A05", to: "WenCui department", ddl: "This friday 10:00 am", gender: "girl only", price: "12", description:"Not big, it's urgent!",time:"2 days ago"},
-      // {},
-      // {}
-    ],
-    expressage_list:[
-      {locate: "WenXin department A05", to: "Rookie station", ddl: "This friday 10:00 am", gender: "girl only", price: "8", description:"Not big, it's urgent!",time:"2 days ago"},
-      {}
-    ],
-    night_list:[
-      {locate: "Rookie station", to: "WenXin department A01", ddl: "Today 19:00 ", gender: "no limitation", price: "10", description:"Not big, it's urgent!",time:"2 days ago"},
-      {locate: "WenCui department", to: "WenXin department A01", ddl: "Today 23:00 ", gender: "no limitation", price: "10", description:"Not big, it's urgent!",time:"2 days ago"},
-      {}
-    ],
-    takeout_list:[
-      // {locate: "WenXin department A05", to: "WenXin department A02", ddl: "This friday 10:00 pm", gender: "girl only", price: "8", description:"Not big, it's urgent!",time:"2 days ago"},
-      // {}
-    ],
+
+    total_list:[],
+    expressage_list:[],
+    night_list:[],
+    takeout_list:[],
+
     isTabs:1,
     announcementText:"Welcome to the E-live! This is a platform for students in XJTLU, which aims to provide students with convenience in life. Enjoy your experience!",
-    types:["Latest order","Pending order","Most bounty","Near expired"],
-    type:"Latest order"
+    types:["Latest order","Most bounty","Near expired"],
+    picker: 'time',
+    filter_type:"Latest order"
   },
   checkTap(e) {
     console.log(e.currentTarget.dataset.flag);
@@ -47,6 +35,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    app.editTabbar();
     let that = this;
     db.collection('PostInfo').get({
       success(res) {
@@ -64,15 +53,12 @@ Page({
     
    },
    OnRefresh(){
-    var that = this;
-    // //在当前页面显示导航条加载动画
     wx.showNavigationBarLoading(); 
     // //显示 loading 提示框。需主动调用 wx.hideLoading 才能关闭提示框
     wx.showLoading({
-      title: '刷新中...',
+      title: 'Refreshing...',
     })
-    console.log ("刷新成功")
-    console.log ("刷新成功")
+    console.log ("Refresh successively")
   },
   /**
    * 生命周期函数--监听页面初次渲染完成
@@ -93,6 +79,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
+    this.onLoad();
     if (typeof this.getTabBar === "function" &&
     this.getTabBar()){
       this.getTabBar().setData({
@@ -100,6 +87,237 @@ Page({
         show:true
       })
     }
+
+    var that = this;
+    var picker1=this.data.picker;
+
+//时间和赏金排序
+    if(picker1 == 'time' || picker1 == 'money') {
+      //total
+      db.collection('PostInfo')
+      .orderBy(picker1, 'asc')
+      .get()
+      .then(res => {
+      for (let i=res.data.length-1,j=0; i >= 0;i--,j++) {
+        console.log(res.data[j])
+        var total_list = "total_list[" + j + "]";
+        that.setData({
+          [total_list]: res.data[i],
+        })
+      }
+    })
+
+      //Expressage
+      db.collection('PostInfo')
+      .where({
+      type: _.eq("Expressage")
+      })
+      .orderBy(picker1, 'asc')
+      .get()
+      .then(res => {
+      console.log(res.data.length)
+      for (let i=res.data.length-1,j=0; i >= 0;i--,j++) {
+      console.log(res.data[j])
+      var expressage_list = "expressage_list[" + j + "]";
+      that.setData({
+        [expressage_list]: res.data[i],
+      })
+    }
+  })
+
+      //Purchasing agent
+      db.collection('PostInfo')
+      .where({
+      type: _.eq("Purchasing agent")
+      })
+      .orderBy(picker1, 'asc')
+      .get()
+      .then(res => {
+      console.log(res.data.length)
+      for (let i=res.data.length-1,j=0; i >= 0;i--,j++) {
+        console.log(res.data[j])
+        var night_list = "night_list[" + j + "]";
+        that.setData({
+          [night_list]: res.data[i],
+        })
+      }
+       })
+
+    //Take-out
+    db.collection('PostInfo')
+    .where({
+      type: _.eq("Take-out")
+    })
+    .orderBy(picker1, 'asc')
+    .get()
+    .then(res => {
+      console.log(res.data.length)
+      for (let i=res.data.length-1,j=0; i >= 0;i--,j++) {
+        console.log(res.data[j])
+        var takeout_list = "takeout_list[" + j + "]";
+        that.setData({
+          [takeout_list]: res.data[i],
+        })
+      }
+    })
+    .catch(err => {
+      console.error(err)
+    })
+  }
+      
+    //按照ddl排序
+    if(picker1 == 'dates') {
+    //total
+    db.collection('PostInfo')
+    .orderBy(picker1, 'desc')
+    .orderBy('times', 'desc')
+    .get()
+    .then(res => {
+        for (let i=res.data.length-1,j=0; i >= 0;i--,j++) {
+          console.log(res.data[j])
+          var total_list = "total_list[" + j + "]";
+          that.setData({
+            [total_list]: res.data[i],
+          })
+        }
+      })
+
+      //Expressage
+      db.collection('PostInfo')
+      .where({
+        type: _.eq("Expressage")
+      })
+      .orderBy(picker1, 'desc')
+      .orderBy('times', 'desc')
+      .get()
+      .then(res => {
+        console.log(res.data.length)
+        for (let i=res.data.length-1,j=0; i >= 0;i--,j++) {
+          console.log(res.data[j])
+          var expressage_list = "expressage_list[" + j + "]";
+          that.setData({
+            [expressage_list]: res.data[i],
+          })
+        }
+      })
+
+      //Purchasing agent
+      db.collection('PostInfo')
+      .where({
+        type: _.eq("Purchasing agent")
+      })
+      .orderBy(picker1, 'desc')
+      .orderBy('times', 'desc')
+      .get()
+      .then(res => {
+        console.log(res.data.length)
+        for (let i=res.data.length-1,j=0; i >= 0;i--,j++) {
+          console.log(res.data[j])
+          var night_list = "night_list[" + j + "]";
+          that.setData({
+            [night_list]: res.data[i],
+          })
+         }
+      })
+
+      //Take-out
+      db.collection('PostInfo')
+      .where({
+         type: _.eq("Take-out")
+      })
+      .orderBy(picker1, 'desc')
+      .orderBy('times', 'desc')
+      .get()
+      .then(res => {
+        console.log(res.data.length)
+        for (let i=res.data.length-1,j=0; i >= 0;i--,j++) {
+          console.log(res.data[j])
+          var takeout_list = "takeout_list[" + j + "]";
+          that.setData({
+            [takeout_list]: res.data[i],
+          })
+        }
+      })
+      .catch(err => {
+        console.error(err)
+      })
+   }
+
+   //只显示free
+   if(picker1 == 'free') {
+    //total
+    db.collection('PostInfo')
+    .where({
+      state: "Free"
+    })
+    .get()
+    .then(res => {
+        for (let i=res.data.length-1,j=0; i >= 0;i--,j++) {
+          console.log(res.data[j])
+          var total_list = "total_list[" + j + "]";
+          that.setData({
+            [total_list]: res.data[i],
+          })
+        }
+      })
+
+      //Expressage
+      db.collection('PostInfo')
+      .where({
+        type: "Expressage",
+        state: "Free"
+      })
+      .get()
+      .then(res => {
+        console.log(res.data.length)
+        for (let i=res.data.length-1,j=0; i >= 0;i--,j++) {
+          console.log(res.data[j])
+          var expressage_list = "expressage_list[" + j + "]";
+          that.setData({
+            [expressage_list]: res.data[i],
+          })
+        }
+      })
+
+      //Purchasing agent
+      db.collection('PostInfo')
+      .where({
+        type: _.eq("Purchasing agent"),
+        state: "Free"
+      })
+      .get()
+      .then(res => {
+        console.log(res.data.length)
+        for (let i=res.data.length-1,j=0; i >= 0;i--,j++) {
+          console.log(res.data[j])
+          var night_list = "night_list[" + j + "]";
+          that.setData({
+            [night_list]: res.data[i],
+          })
+         }
+      })
+
+      //Take-out
+      db.collection('PostInfo')
+      .where({
+         type: _.eq("Take-out"),
+         state: "Free"
+      })
+      .get()
+      .then(res => {
+        console.log(res.data.length)
+        for (let i=res.data.length-1,j=0; i >= 0;i--,j++) {
+          console.log(res.data[j])
+          var takeout_list = "takeout_list[" + j + "]";
+          that.setData({
+            [takeout_list]: res.data[i],
+          })
+        }
+      })
+      .catch(err => {
+        console.error(err)
+      })
+   }
   },
 
   /**
@@ -120,6 +338,10 @@ Page({
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
+    console.log("loading")
+    wx.showNavigationBarLoading() //在标题栏中显示加载
+    
+    //Total
     var that = this;
     db.collection('PostInfo').get({
       success: res => {
@@ -131,7 +353,7 @@ Page({
           })
         }
       }
-    }),
+    })
       wx.stopPullDownRefresh({
         success: (res) => {
           wx.showToast({
@@ -139,6 +361,7 @@ Page({
           })
         },
       })
+
   },
 
   /**
@@ -174,14 +397,25 @@ Page({
     var time=event.currentTarget.dataset.time;
     var image=event.currentTarget.dataset.image;
     var type=event.currentTarget.dataset.type;
+    var state=event.currentTarget.dataset.state;
+    var id=event.currentTarget.dataset.id;
+    var oid=event.currentTarget.dataset.oid;
     wx.navigateTo({
-          url: "../detail/detail?detail="+head_image+","+name+","+from+","+to+","+times+","+dates+","+gender+","+money+","+content+","+time+","+image+","+type
+          url: "../detail/detail?detail="+head_image+","+name+","+from+","+to+","+times+","+dates+","+gender+","+money+","+content+","+time+","+image+","+type+","+state+","+id+","+oid
     })  
  },
  bindRegionChange: function (e) {
       console.log('picker', e.detail.value)
+      if(e.detail.value==1)
+          var val='money';
+      if(e.detail.value==0)
+          var val='time'
+      if(e.detail.value == 2) {
+        var val = 'dates'
+      }
       this.setData({
-        type: e.detail.value,
+            picker:val,
       })
+      this.onShow();
   }
 })

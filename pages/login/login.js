@@ -6,6 +6,7 @@ const admin = db.collection('adminlist');
 let name = null;
 let password = null;
 
+
 Page({
   onLoad: function (options) {
 wx.showLoading({
@@ -23,6 +24,7 @@ setTimeout( res=> {
     password: 'null',
     disable:true,
     opacity: .4,
+    truename: 'null',
   },
 
   useridInput: function (e) {
@@ -56,14 +58,19 @@ setTimeout( res=> {
   inputFocus: function (e) {
     if (e.target.id == 'name') {
       this.setData({
-        'userid_focus': true
-      });
+        'userid_focus': true,
+      })
+      
+      ;
     } else if (e.target.id == 'password') {
       this.setData({
-        'passwd_focus': true
+        'passwd_focus': true,
+        'truename' : name    
       });
     }
   },
+
+
 
   inputBlur: function (e) {
     if (e.target.id == 'name') {
@@ -85,7 +92,7 @@ setTimeout( res=> {
 
   forget : function(){
     wx.navigateTo({
-      url: '/pages/login/resetPasswd1',
+      url: '/pages/login/findback',
     })
   },
   login: function(){
@@ -105,24 +112,19 @@ setTimeout( res=> {
         console.log(res.data);
         for (let i = 0; i < user.length; i++) {  //遍历数据库对象集合
            if (name == user[i].name) { //用户名存在
-            console.log('name')
-            
-            
+            console.log('name')       
              if (password == user[i].password)
                   {
+                    app.globalData.name = name;
                     wx.switchTab({
                       url: '/pages/homepage/homepage',
                      })
                     wx.showToast({
                         title: 'Log in successfully!！',
                         icon: 'success',
-                        duration: 2500,
-                 
-                      })
-                         
-                           
-                    break
-             
+                        duration: 2500,          
+                      })                          
+                    break            
               }
               else (password !== user[i].password) 
               {  

@@ -1,16 +1,16 @@
 const app = getApp()
-const util = require('../../utils/util.js')
+var util = require('../../utils/util2.js');
 const db = wx.cloud.database();//初始化数据库
-let that = this
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    isTabs:1,
-    datetimeTo: "2021/04/30 10:30:00 GMT+0800", // 开始时间模拟时间 订单的DDL
-    timeLeft: "",    // 剩下的时间
+    tabbar: {},
+    isTabs:'1',
+    datetimeTo: "", // 开始时间模拟时间 订单的DDL
+    timeLeft: '',    // 剩下的时间
     type: "",   //订单状态 list中尚未添加
     openid: '',
     postlist:[],
@@ -20,11 +20,27 @@ Page({
     money: '',
     gender: '',
     times: '',
-    queryResult: ''
+    queryResult1: [],
+    queryResult2: [],
+    DataList: [],
+    DataList2: [],
+    takerbal: '',
+    takerbalance:'',
+    posterbalance:'',
+    content:'',
+    takename:'',
+    time:'',
+    DDL:'',
+    dates:'',
+    taketime:''
 
    },
    
-   onLoad(){
+   onLoad:function(options){
+    app.editTabbar();
+    this.setData({
+      isTabs: app.globalData.value
+    })
     var that = this;
     wx.cloud.callFunction({
       name:'getOpenid',
@@ -38,50 +54,74 @@ Page({
       }
     }) 
  },
-
  queryPost: function(){
    let that = this;
      // 查询当前用户所有的 counters
   db.collection('PostInfo').where({
     _openid: this.data.openid
   })
-  .get({
-    success: res => {
+  .get()
+  .then(res => { 
+    console.log(res.data.length)
+    for (let i=res.data.length-1,j=0; i >= 0;i--,j++) {
+      console.log(res.data[j])
+      var queryResult1 = "queryResult1[" + j + "]";
       that.setData({
-        //queryResult: JSON.stringify(res.data, null, 2),
-        queryResult: res.data,
-        
-        //from: JSON.stringify(res.data[0].from, null, 0).replace("\"","").replace("\"",""),
-
-        // to: JSON.stringify(res.data[0].to, null, 0).replace("\"","").replace("\"",""),
-        //times: JSON.stringify(res.data[0].times, null, 0).replace("\"","").replace("\"",""),
-        // money: JSON.stringify(res.data[0].money, null, 0).replace("\"","").replace("\"",""),
-        // gender: JSON.stringify(res.data[0].gender, null, 0).replace("\"","").replace("\"",""),
+        [queryResult1]: res.data[i]
       })
-      console.log('[数据库] [查询记录] 成功: ', res)
-      console.log(this.data.queryResult)
-    },
-    fail: err => {
-      wx.showToast({
-        icon: 'none',
-        title: '查询记录失败'
+    }
+  }),
+  db.collection('PostInfo')
+  .where({
+    takeid: this.data.openid
+  })
+  .get()
+  .then(res => { 
+    console.log(res.data.length)
+    for (let i=res.data.length-1,j=0; i >= 0;i--,j++) {
+      console.log(res.data[j])
+      var queryResult2 = "queryResult2[" + j + "]";
+      that.setData({
+        [queryResult2]: res.data[i],
+        datetimeTo: res.data[i].dates+"  "+res.data[i].times+" GMT+0800"
       })
-      console.error('[数据库] [查询记录] 失败：', err)
     }
   })
  },
+ 
 
    //删除订单
-   cancel(){
+   cancel:function(e){
+    var that = this;
+    let id = e.currentTarget.id;//get current clicked item id
+    //var objectId = that.data.queryResult[id]._id;
+    //console.log(objectId)
     wx.showModal({
       title: 'Tip',
       content: 'Delete this order',
       cancelText:'Cancel',
-        confirmText:'Confirm',
+      confirmText:'Confirm',
       success (res) {
         if (res.confirm) {
-          console.log('用户点击确定 删除订单')    //在list中删除订单信息 并刷新
+          console.log('用户点击确定删除订单')  
+          //在list中删除订单信息 并刷新
+          var postId = that.data.queryResult1[id]._id; //according to the querypost to get _id
+             console.log(postId)
+          //原生删除
+          db.collection('PostInfo').doc(postId).remove({
+            success(res) {
+              console.log(res)
+            }
+          })
+          app.globalData.value='1'
 
+          const pages = getCurrentPages()
+          const perpage = pages[pages.length - 1]
+          perpage.onLoad()  
+          
+          wx.showToast({
+            title: 'Canceled successfully',
+          })
         } else if (res.cancel) {
           console.log('用户点击取消')            //无反应
         }
@@ -89,41 +129,141 @@ Page({
     })
   },
 
-
+ 
   //确认收货
-  confirm(){
+  confirm: function(e){
+    var that = this;
+    let id = e.currentTarget.id;//get current clicked item id
+    console.log(e.currentTarget.id)
     wx.showModal({
       title: 'Tip',
-      content: '确认已收货',
+      content: 'Confirm this order',
       cancelText:'Cancel',
-        confirmText:'Confirm',
+      confirmText:'Confirm',
       success (res) {
         if (res.confirm) {
-          console.log('确认收货')    //在list中更改订单信息状态为已结束
+          console.log('用户点击确定完成订单')   
+          console.log(that.data.queryResult1[id])
+          var postId = that.data.queryResult1[id]._id; //according to the querypost to get _id
+             console.log(postId)
+          
+          db.collection('PostInfo').doc(postId).update({
+            data:{
+              state:"Finished"
+            }
+          })
 
+          var takeId = that.data.queryResult1[id].takeid;                                 //修改接单者余额
+          var money = that.data.queryResult1[id].money;
+        
+         
+          console.log(takeId);
+          console.log(money);
+          db.collection('adminlist').where({       //获取taker历史balance
+            _openid:takeId
+            }) 
+            .get()
+            .then(res => {  
+                that.setData({
+                  DataList: res.data,
+                })  
+                console.log(that.data.DataList)
+                var bal=that.data.DataList[0].balance
+                that.setData({
+                  takerbalance:bal
+                })
+                console.log(that.data.takerbalance)
+                var takerbal=Number(that.data.takerbalance) + Number(money);
+                console.log(takerbal)                      //接单者的新余额
+                wx.cloud.callFunction({  //增加接单人信息
+                  name:'changeBalance',
+                  data:{
+                      id:takeId,
+                      newbalance: takerbal
+                  }
+                }).then(res=>{
+                  wx.showToast({
+                    title: '收货 successfully',
+                  })
+                }).catch(res=>{
+                  wx.showToast({
+                    title: 'transfer accounts failed',
+                  })
+                })
+            })
+            .catch(err => {
+              console.error(err)
+            })
+          
+
+          
+          var posterId = that.data.queryResult1[id].
+          _openid;                                 //修改发布者余额
+         
+          console.log(posterId);
+          console.log(money);
+          db.collection('adminlist').where({       //获取poster历史balance
+            _openid:posterId
+            }) 
+            .get()
+            .then(res => {  
+                that.setData({
+                  DataList2: res.data,
+                })  
+                console.log(that.data.DataList2)
+                var bal2=that.data.DataList2[0].balance
+                that.setData({
+                  posterbalance:bal2
+                })
+                console.log(that.data.posterbalance)
+                var posterbal=Number(that.data.posterbalance) - Number(money);
+
+                wx.cloud.callFunction({  //增加接单人信息
+                  name:'changeBalance',
+                  data:{
+                      id:posterId,
+                      newbalance: posterbal
+                  }
+                }).then(res=>{
+                  wx.showToast({
+                    title: '收货 successfully',
+                  })
+                }).catch(res=>{
+                  wx.showToast({
+                    title: 'transfer accounts failed',
+                  })
+                })
+            })
+            .catch(err => {
+              console.error(err)
+            })
+          
+          
         } else if (res.cancel) {
           console.log('用户点击取消')            //无反应
         }
       }
     })
   },
+ 
+  
 
   //倒计时
   onShow: function () {
+    this.onLoad();
     this.data.timer = setInterval(() =>{ //注意箭头函数！！
       this.setData({
         timeLeft: util.getTimeLeft(this.data.datetimeTo)//使用了util.getTimeLeft
-      });
-      if (this.data.timeLeft == "0天0时0分0秒") {
-        clearInterval(this.data.timer);
-      }
-     // console.log(this.data.timeLeft)
+      })
+        if (this.data.timeLeft == "0天0时0分0秒") {
+          clearInterval(this.data.timer);
+          return;
+        }
     }, 1000);
   },
 
 
   checkTap(e) {
-    console.log(e.currentTarget.dataset.flag);
     this.setData({
       isTabs:e.currentTarget.dataset.flag
     })
@@ -153,18 +293,7 @@ Page({
   //   app.editTabbar();
   // },
   onPullDownRefresh: function () {
-      // var that = this;
-          // db.collection('MessageList').get({
-            //   success: res => {
-            //     for (let i=res.data.length-1,j=0; i >= 0;i--,j++) {
-            //       console.log(res.data[j])
-            //       var total_list = "total_list[" + j + "]";
-            //       that.setData({
-            //         [total_list]: res.data[i],
-            //       })
-            //     }
-            //   }
-            // }),
+    this.queryPost()
       wx.stopPullDownRefresh({
                 success: (res) => {
                   wx.showToast({
@@ -199,8 +328,7 @@ Page({
 
 orderShow: function () {
   let that = this
-    that.alreadyShow()
-    that.waitPayShow()
+ 
   
 },
 
@@ -216,23 +344,7 @@ orderShow: function () {
       }
     })
 },
-//模拟数据
-  alreadyShow: function(){
-    let that= this;
-    this.setData({
-      alreadyOrder: [{ name: "快递", state: "待付款", time: "2021-03-22，18:00-20:00", sp: "boys only", url: "../../tabbarComponent/icon/1.jpg", money: "186",detail:"在文星菜鸟驿站" },{ name: "外卖", state: "交易成功", time: "2021-03-01，13:00-14:30", sp: "girls only", url: "../../tabbarComponent/icon/2.jpg", money: "132",detail:"私聊" }]
-    })
-    // console.log ('result', that.data.queryResult)
-    // this.setData({
-    //   alreadyOrder: this.data.queryResult
-    // })
-  },
 
-  waitPayShow: function(){
-    this.setData({
-      waitPayOrder: [{ name: "快递", state: "交易成功", time: "2018-10-12 18:00-20:00", status: "未开始", url: "../../tabbarComponent/icon/2.jpg", money: "205" }],
-    })
-  },
   
     /**
    * 用户点击右上角分享
@@ -248,10 +360,20 @@ orderShow: function () {
         var detail = event.currentTarget.dataset.detail;
         var money = event.currentTarget.dataset.money;
         var pic = event.currentTarget.dataset.pic;
+        var from = event.currentTarget.dataset.from;
+        var to = event.currentTarget.dataset.to;
+        var type = event.currentTarget.dataset.type;
+        var gender = event.currentTarget.dataset.gender;
+        var content = event.currentTarget.dataset.content;
+        var takename = event.currentTarget.dataset.takename;
+        var times = event.currentTarget.dataset.times;
+        var dates = event.currentTarget.dataset.dates;
+        var taketime = event.currentTarget.dataset.taketime;
+        var takeid = event.currentTarget.dataset.takeid;
         // console.log("on post id is" + postId);
         wx.navigateTo({
           // url:"post-detail/post-detail"
-          url: "../order/demo2?onPostTap=" + name +"|"+ state +"|"+ time +"|"+ sp+"|"+detail+"|"+money+"|"+pic
+          url: "../order/demo2?onPostTap=" + name +"|"+ state +"|"+ time +"|"+ sp+"|"+detail+"|"+money+"|"+pic+"|"+from+"|"+to+"|"+type+"|"+gender+"|"+content+"|"+takename+"|"+times+"|"+dates+"|"+taketime+"|"+takeid
         })
       }
 

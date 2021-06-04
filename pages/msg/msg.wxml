@@ -1,10 +1,13 @@
 <!--pages/msg/msg.wxml-->
 
-<button class="chat_frame" bindtap="go_to_chat" wx:for="{{chat_list}}" wx:for-item="chat_info">
+<view class="chat_frame" bindtap="go_to_chat" wx:for="{{chat_list}}" wx:for-item="chat_info">
   <view class="head">
     <image src="{{chat_info.head_image}}"></image>
     <view id="post1">{{chat_info.name}}</view>
   </view>
   <view id="post2">{{chat_info.text}}</view>
   <view id="post3">{{chat_info.time}}</view>
-</button>
+</view>
+<view>
+  <tabbar tabbar="{{tabbar}}"></tabbar>
+</view>

@@ -1,8 +1,8 @@
 <view class= "chatroom" >
 	<scroll-view scroll-y class="body">
     
-    <block wx:for ="{{chats}}" wx:key="{{item._id}}">
-			<view wx:if="{{openId==item._openid}}" style='display: flex; padding: 2vw 5vw 2vw 3vw; flex-direction:row-reverse'>
+    <block wx:for ="{{chats}}" wx:key="{{index}}">
+			<view wx:if="{{NAME==item.Name}}" style='display: flex; padding: 2vw 5vw 2vw 3vw; flex-direction:row-reverse'>
    <image class="avatar" style='width: 10vw; display: flex;'src="{{item.avatar}}" mode="widthFix"></image>
       
     <view class="main" >
@@ -14,7 +14,7 @@
     
     </view>
 
-    <view wx:else="{{openId!= item._openid}}" style='display: flex; padding: 2vw 11vw 2vw 2vw; '>
+    <view wx:else="{{NAME!=item.Name}}" style='display: flex; padding: 2vw 11vw 2vw 2vw; '>
    
       <image class="avatar" style='width: 10vw; display: flex;'src="{{item.avatar}}" mode="widthFix"></image>
       <view class="main" >
@@ -41,9 +41,8 @@
 
 	<view class="input_box" wx:if="{{userInfo}}">
 		<view class="input_box1">
-			
-			<input class="ipt" placeholder="请输入" bindinput="onTextInput"  adjust-position="false" cursor-spacing="10rpx"></input>
-			<button class="send-btn" bindtap="onSend">发送</button>
+			<input class="ipt" placeholder="Please Enter Information" bindinput="onTextInput"  adjust-position="false" cursor-spacing="10rpx"></input>
+			<button class="send-btn" bindtap="onSend">Send</button>
 		</view>
 	</view>
 

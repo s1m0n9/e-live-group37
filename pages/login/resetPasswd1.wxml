@@ -1,13 +1,15 @@
-<!--pages/login/resetPasswd1.wxml-->
-<view class="a">
-  <form bindsubmit="onSubmit">
-    <input class="ipt" placeholder="输入绑定的邮箱"placeholder-sclass="iptinfo" 
-   cursor-spacing="100px"> </input>
-  </form>
-  <form bindsubmit="onSubmit">
-    <input class="ipt" type="number" placeholder="输入绑定电话号码"placeholder-sclass="iptinfo" 
-   cursor-spacing="100px"> </input>
-  </form>
-  <button bindtap="next" class="q" type="primary">
-    下一步</button>
- </view>
+<form bindsubmit='formSubmit'>
+  <view class='new'>
+  <text>Your ID Name</text>
+  <input password='true' name='id' placeholder='Please enter your ID' />
+</view>
+  <view class='new'>
+  <text>New password</text>
+  <input password='true' name='newpwd' placeholder='Please enter new password' />
+</view>
+<view class='ok'>
+  <text>Verify password</text>
+  <input password='true' name='newpwd2' placeholder='Confirm password' />
+</view>
+<button type='primary' form-type='submit' bindtap="uu">Submit</button>
+</form>

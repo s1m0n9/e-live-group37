@@ -8,6 +8,8 @@ let password2 = null;
 let studentID = null;
 let phoneNum = null;
 let email = null;
+let balance =null;
+
 Page({
   data: {
    
@@ -78,7 +80,8 @@ Page({
         studentID:studentID,
         name: name,
         password: password,
-        email: email
+        email: email,
+        balance: 0
       }
     }).then(res => {
       console.log('注册成功！')
